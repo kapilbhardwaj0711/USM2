@@ -26,7 +26,7 @@ public interface Data
 	final String company="jobkart";
 	final String Guestemail="test107@gmail.com";
 	final String isbn="9780323636360";
-	final String ebook="Atlas of Orthoses and Assistive Devices E-Book , 5th Edition";
+	
 	final int Discount =30;
 	final String coupon ="US30";
 	final String flashcard="Cell Biology Playing Cards";

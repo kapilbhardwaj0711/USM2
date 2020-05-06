@@ -56,7 +56,17 @@ public class BasePage
 	private @Getter WebElement productIsbn;
 	
 	@FindBy(xpath = "//h1[@class='page-title']")
-	private @Getter WebElement productTitle;	
+	private @Getter WebElement productTitle;
+	
+	@FindBy(xpath =   "(//a[@title='Product Format'])[1]")
+	private @Getter WebElement productFormat;
+	
+	@FindBy(xpath = "(//a/span[text()='Ebooks'])[1]")
+	private @Getter WebElement EbookCategory;
+	
+	
+	@FindBy(xpath = "(//a/span[text()='Books'])[1]")
+	private @Getter WebElement BooksCategory;
 	
 	public BasePage(WebDriver driver)
 	{

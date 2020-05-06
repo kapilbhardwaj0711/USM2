@@ -24,12 +24,13 @@ public class UserProductPurchase extends baseLib implements Data
 	}
 */
 /*	@Test(priority = 3)
-	public void EBookPurchaseUser() throws Exception
+	public void validEBookPurchaseUser() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
-		tf.EbookPurchaseVAlidUser(username, password, product);
+		tf.EbookPurchaseValidUser(username, password, Ebook);
 	}
-	@Test(priority=4)
+*/	
+/*	@Test(priority=4)
 	public void AddtoCart() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
@@ -40,10 +41,10 @@ public class UserProductPurchase extends baseLib implements Data
 	public void ApplyDiscountCoupon() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
-		tf.DiscountCoupon(username, password, product);
+		tf.validDiscountCoupon(username, password, product,Discount,coupon);
 	}
 */
-/*	
+/*
 	@Test(priority = 6)
 	public void GuestAppyDiscount() throws Exception
 	{
@@ -63,7 +64,7 @@ public class UserProductPurchase extends baseLib implements Data
 	public void GuestUserNotPurchaseEBook() throws Exception 
 	{
 		taskfeature tf = new taskfeature(driver);
-		tf.GuestUserNotBuyEbook(ebook);
+		tf.GuestUserNotBuyEbook(Ebook);
 	}
 */	
 }

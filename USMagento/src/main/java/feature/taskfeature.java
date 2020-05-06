@@ -13,7 +13,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -149,16 +149,16 @@ public class taskfeature
    public void ValidUserproductPurchase(String username,String password,String product) throws Exception
    {
 	   ValidLogin(username, password);
-	   Thread.sleep(5000);
+	   
 //	   bp.ClearCart();
 	   tm.searchFuc(product);
 //	   srp.getFirstProductOnSearch().click();
 //	   String title = bp.getProductTitle().getText();
-	    String expected = tm.trncString(bp.getProductTitle().getText());
-	    String actual = tm.trncString(product);
-	  
-	    Assert.assertEquals(actual, expected);
-	    bp.getAddToCartbtn().click();
+//	    String expected = tm.trncString(bp.getProductTitle().getText());
+//	    String actual = tm.trncString(product);
+	  Assert.assertTrue(bp.getProductTitle().getText().contains(product));
+//	    Assert.assertEquals(actual, expected);
+	       bp.getAddToCartbtn().click();
 		   WebDriverWait wait = new WebDriverWait(driver, 10);
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
 		   
@@ -173,18 +173,24 @@ public class taskfeature
 		   bp.getProceedTochckBtn().click();
 	   
 }
-   public void EbookPurchaseVAlidUser(String username ,String password,String product) throws Exception 
+   public void EbookPurchaseValidUser(String username ,String password,String Ebook ) throws Exception 
    {
 	   ValidLogin(username, password);
 	   Thread.sleep(5000);
-	   bp.ClearCart();
+	   WebElement prod = driver.findElement(By.xpath("(//a[@title='Product Format'])[1]"));
+	   WebElement paperbook = driver.findElement(By.xpath("(//a/span[text()='Books'])[1]"));
+	  Actions act = new Actions(driver);
+	  act.moveToElement(prod);
+	  paperbook.click();
+//	   Thread.sleep(5000);
+//	   bp.ClearCart();
 /*	   	String val = bp.getCartvalue().getText();
 //	    int value = Integer.parseInt(val);
 	   	if (val.equalsIgnoreCase("")) 
 	   {   
 	   		System.out.println("Cart is empty");
 	   }
-	   	else 
+	   	else
 	   	{
 	   		System.out.println("i am in else ");
 			   bp.getMycartIcon().click();
@@ -192,8 +198,9 @@ public class taskfeature
 			   Thread.sleep(3000);
 			   tm.clearCart();
 		}
-*/   	Thread.sleep(5000);
-	   tm.searchFuc(product);
+*/   	
+//	   Thread.sleep(5000);
+//	   tm.searchFuc(ebook);
 	   List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
 		  
 	   for (int i = 0; i < 5; i++) 
@@ -519,12 +526,14 @@ public void EditBillingAddress(String username, String password,String street,St
 	   
    }
    
-   public void DiscountCoupon(String username,String password,String product) throws Exception
+   public void validDiscountCoupon(String username,String password,String product,int Discount,String coupon) throws Exception
    {
-//	   System.out.println(product);
 	   ValidLogin(username, password);
-	   Thread.sleep(5000);
-	   bp.ClearCart();
+	   String oldprice;
+//	   System.out.println(product);
+	   
+//	   Thread.sleep(5000);
+//	   bp.ClearCart();
 //	   String val1=driver.findElement(By.xpath("//span[@class='counter qty empty']/span[@class='counter-number']")).getText();
 	    
 //	   System.out.println("cart value is :-"+val1);
@@ -533,7 +542,7 @@ public void EditBillingAddress(String username, String password,String street,St
 	  
 //	   int value = Integer.parseInt(val);
 	   if (val.equalsIgnoreCase("")) 
-	   {
+	   {s
 		   
 		   System.out.println("Cart is empty ");
 	   }
@@ -546,62 +555,83 @@ public void EditBillingAddress(String username, String password,String street,St
 		   tm.clearCart();
 		}
 */
-	   Thread.sleep(3000);
+	   Thread.sleep(1000);
 	   tm.searchFuc(product);
-	   Thread.sleep(3000);
+	   bp.getAddToCartbtn().click();
+	   WebDriverWait wait = new WebDriverWait(driver, 10);
+	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
 	   
-	   driver.findElement(By.xpath("//span[text()='Add to Cart']")).click();
+//	   Thread.sleep(2000);
 	   bp.getMycartIcon().click();
+	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
 	   bp.getViewCartBtn().click();
-	   
-//	  System.out.println("Step 10");
+//	   
+//	   boolean bol = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).isDisplayed();
+//	  System.out.println(bol);
+	 
+	  if (driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).isDisplayed()) 
+	 {
+		 
+        oldprice =driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).getText();
+		//  System.out.println("if condtion is :"+oldprice);
+
+	 } 
+	 else 
+	 {
+		 oldprice = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).getText();
+	      System.out.println("else condtion is :"+oldprice);
+	 }
 	  
-      String oldprice = driver.findElement(By.id("old-price")).getText();
-      String basefare = oldprice.substring(1);
+	  String basefare = oldprice.substring(1);
       double basefare1 = Double.parseDouble(basefare);
-//      System.out.println(basefare1);
-      
       
       String value = driver.findElement(By.xpath("//div[@class='field qty']//input")).getAttribute("value");
-//	  System.out.println(value);
+//	  System.out.prin	tln(value);
 	  double qty = Double.parseDouble(value);
 	  double finlprice = qty*basefare1;
 	  
-	  double val2 = finlprice/4;
-//   System.out.println("dicounted price "+val2);
+//	  double val2 = finlprice/4;
+	  double val2 = tm.Discount(finlprice, Discount);
+//      System.out.println("discounted price "+val2);
       
-      double afterdiscount = basefare1-val2;
-//     System.out.println(afterdiscount);
+//      double afterdiscount = basefare1-val2;
+//    System.out.println(afterdiscount);
       
       DecimalFormat df2 = new DecimalFormat("$#.##");
-//      System.out.println("Two decimal :- "+df2.format(afterdiscount)); 
-      String discountedvalue = df2.format(afterdiscount);
+//    System.out.println("Two decimal :- "+df2.format(afterdiscount)); 
+      String discountedvalue = df2.format(val2);
+      System.out.println(discountedvalue);
       
-      driver.findElement(By.id("coupon_code")).sendKeys("gcs25");
-      driver.findElement(By.xpath("//button//span[text()='Apply Discount']")).click();
+      driver.findElement(By.id("coupon_code")).sendKeys(coupon);
+      driver.findElement(By.xpath("//button//span[text()='Apply']")).click();
       
       
-    List<WebElement> numberOfSubtotal = driver.findElements(By.xpath("//td[@class='col subtotal']"));
-    Iterator<WebElement> itr = numberOfSubtotal.iterator();
+//    List<WebElement> numberOfSubtotal = driver.findElements(By.xpath("//td[@class='col subtotal']"));
+//    Iterator<WebElement> itr = numberOfSubtotal.iterator();
       
-    String subtotalval = itr.next().getText();
-//  System.out.println("subtotal value "+subtotalval);
-    Assert.assertEquals(discountedvalue, subtotalval);
+//    String subtotalval = itr.next().getText();
+//    System.out.println("subtotal value "+subtotalval);
+//    Assert.assertEquals(discountedvalue, subtotalval);
+     Thread.sleep(20000);
     
    
    }
   public void GuestUserNotBuyEbook(String Ebook) throws Exception
    {
 	   tm.searchFuc(Ebook);
-	   srp.getFirstProductOnSearch().click();
-//	   Assert.assertEquals(bp.getProductTitle().getText(), product);
+//	   srp.getFirstProductOnSearch().click();
 	   bp.getAddToCartbtn().click();
+	   WebDriverWait wait = new WebDriverWait(driver, 10);
+	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+	   
+//	   Thread.sleep(2000);
 	   bp.getMycartIcon().click();
+	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
 	   bp.getViewCartBtn().click();
-	   Thread.sleep(1000);
+//	   
 	   bp.getProceedTochckBtn().click();
 	   Thread.sleep(3000);
-	   Assert.assertEquals("Customer Login", driver.getTitle());
+//	   Assert.assertEquals("Customer Login", driver.getTitle());
    }
   public void Forgetpassword() throws InterruptedException
   {
