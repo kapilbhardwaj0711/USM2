@@ -117,7 +117,7 @@ public class taskfeature
  	  sel1.selectByIndex(4);
  	 
  	  Random randomGenerator = new Random();
- 	 int randomInt = randomGenerator. nextInt(1000);
+ 	  int randomInt = randomGenerator. nextInt(1000);
  	  
  	  cca.getEmail().sendKeys(firstname+randomInt+"@gmail.com");
  	  cca.getConfEmail().sendKeys(firstname+randomInt+"@gmail.com");
@@ -148,16 +148,16 @@ public class taskfeature
    }
    public void ValidUserproductPurchase(String username,String password,String product) throws Exception
    {
-	   ValidLogin(username, password);
+	   	  ValidLogin(username, password);
 	   
 //	   bp.ClearCart();
-	   tm.searchFuc(product);
+	   	  tm.searchFuc(product);
 //	   srp.getFirstProductOnSearch().click();
 //	   String title = bp.getProductTitle().getText();
 //	    String expected = tm.trncString(bp.getProductTitle().getText());
 //	    String actual = tm.trncString(product);
-	  Assert.assertTrue(bp.getProductTitle().getText().contains(product));
-//	    Assert.assertEquals(actual, expected);
+	       Assert.assertTrue(bp.getProductTitle().getText().contains(product));
+//	   	 	Assert.assertEquals(actual, expected);
 	       bp.getAddToCartbtn().click();
 		   WebDriverWait wait = new WebDriverWait(driver, 10);
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
@@ -173,16 +173,13 @@ public class taskfeature
 		   bp.getProceedTochckBtn().click();
 	   
 }
-   public void EbookPurchaseValidUser(String username ,String password,String Ebook ) throws Exception 
+   public void CartCount(String username ,String password ) throws Exception 
    {
 	   ValidLogin(username, password);
+	   Actions act = new Actions(driver);
+	   act.moveToElement(bp.getProductFormat()).perform();
+	   bp.getEbookCategory().click();
 	   Thread.sleep(5000);
-	   WebElement prod = driver.findElement(By.xpath("(//a[@title='Product Format'])[1]"));
-	   WebElement paperbook = driver.findElement(By.xpath("(//a/span[text()='Books'])[1]"));
-	  Actions act = new Actions(driver);
-	  act.moveToElement(prod);
-	  paperbook.click();
-//	   Thread.sleep(5000);
 //	   bp.ClearCart();
 /*	   	String val = bp.getCartvalue().getText();
 //	    int value = Integer.parseInt(val);
@@ -199,38 +196,50 @@ public class taskfeature
 			   tm.clearCart();
 		}
 */   	
-//	   Thread.sleep(5000);
+	   
 //	   tm.searchFuc(ebook);
 	   List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
-		  
+	
 	   for (int i = 0; i < 5; i++) 
 	   {
 		   WebElement book = numberofbooks.get(i);
 		   book.click();
+		   Thread.sleep(2000);
+		  
 	   }
-	   Thread.sleep(10000);
+	   
+	   
+/*	   JavascriptExecutor jre = (JavascriptExecutor)driver;
+	   jre.executeScript("window.scrollBy(0,-300)");
+*/	   WebDriverWait wait = new WebDriverWait(driver, 30);
+//	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
+	   
 	   JavascriptExecutor jre = (JavascriptExecutor)driver;
 	   jre.executeScript("window.scrollBy(0,-300)");
-	   WebDriverWait wait = new WebDriverWait(driver, 30);
-	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
 	   
-	   bp.getLogo().click();
-	   hp.getEbooksbtn().click();
+	   
+	   act.moveToElement(bp.getProductFormat()).perform();
+	   bp.getBooksCategory().click();
 	   
 	   List<WebElement> Ebooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
-		for (int i = 0; i < 5; i++) 
-	   {
+		for (int i = 3; i <10; i++) 
+		{
 		   WebElement Ebook1 = Ebooks.get(i);
 		   Ebook1.click();
+		   Thread.sleep(2000);
 		   
 		}
-	   jre.executeScript("window.scrollBy(0,-300)");
-	   Thread.sleep(10000);
-	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
-	   
-	   bp.getMycartIcon().click();
-	   bp.getViewCartBtn().click();
-	   Thread.sleep(2000);
+		   JavascriptExecutor jre1 = (JavascriptExecutor)driver;
+		   jre1.executeScript("window.scrollBy(0,-400)");
+		   
+		   
+		   Assert.assertEquals(bp.getCartvalue().getText(), "10");
+//	       wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
+		   bp.getMycartIcon().click();
+		   
+		   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+		   bp.getViewCartBtn().click();
+		   Thread.sleep(10000);
 	  
 //	   bp.getProceedTochckBtn().click();
 //	   String title = "Checkout";
@@ -314,7 +323,7 @@ public void EditBillingAddress(String username, String password,String street,St
 	 mac.getMangeAcBtn().click();
 	 Thread.sleep(1000);
 //	 abp.getChangeBillbtn().click();
-	 driver.findElement(By.linkText("Change Billing Address")).click();
+	 	driver.findElement(By.linkText("Change Billing Address")).click();
 //	 driver.findElement(By.xpath("//a[@class='action edit']/span[text()='Change Billing Address']")).click();
 //	 System.out.println(abp.getChnageBillbtn().getText());
 	 

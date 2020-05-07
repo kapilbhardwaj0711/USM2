@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed May 06 16:36:14 IST 2020</td>
+<td>Started on:</td><td>Thu May 07 20:07:26 IST 2020</td>
 </tr>
-<tr><td>Total time:</td><td>66 seconds (66972 ms)</td>
+<tr><td>Total time:</td><td>102 seconds (102142 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,25 +67,62 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Script.UserProductPurchase.validUserProductPurchase()'><b>validUserProductPurchase</b><br>Test class: Script.UserProductPurchase<br/>
+<td title='Script.UserProductPurchase.maxCartCount()'><b>maxCartCount</b><br>Test class: Script.UserProductPurchase<br/>
 <a href="#Output-1041210917" onClick='toggleBox("Output-1041210917", this, "Show output", "Hide output");'>Show output</a>
 
 <a href="#Output-1041210917" onClick="toggleAllBoxes();">Show all outputs</a>
 <div class='log' id="Output-1041210917">
-validUserProductPurchase script execustion startsWed May 06 16:36:39 IST 2020<br/>
-validUserProductPurchase script is passed<br/>
+maxCartCount script execustion startsThu May 07 20:08:11 IST 2020<br/>
+maxCartCount script is failed<br/>
 </div>
 </td>
-<td></td>
-<td>41</td>
+<td><div><pre>java.lang.AssertionError: expected [10] but found [18]
+	at feature.taskfeature.CartCount(taskfeature.java:236)
+	at Script.UserProductPurchase.maxCartCount(UserProductPurchase.java:30)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1041210917", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1041210917'><pre>java.lang.AssertionError: expected [10] but found [18]
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.failNotEquals(Assert.java:776)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+	at org.testng.Assert.assertEquals(Assert.java:118)
+	at org.testng.Assert.assertEquals(Assert.java:453)
+	at org.testng.Assert.assertEquals(Assert.java:463)
+	at feature.taskfeature.CartCount(taskfeature.java:236)
+	at Script.UserProductPurchase.maxCartCount(UserProductPurchase.java:30)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:40)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:489)
+	at org.testng.internal.thread.ThreadUtil$1.call(ThreadUtil.java:52)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>56</td>
 <td>Script.UserProductPurchase@3bfdc050</td></tr>
 </table><p>
 </body>

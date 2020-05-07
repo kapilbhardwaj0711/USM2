@@ -40,10 +40,10 @@ public class BasePage
 	@FindBy(xpath = "//span[@class='counter-number']")
 	private @Getter WebElement Cartvalue;
 	
-	@FindBy(xpath = "//span[text()='10']")
+	@FindBy(xpath = "//span[@class='counter-number']")
 	private @Getter WebElement Cartvalue10;
 	
-	@FindBy(xpath = "//span[text()='5']")
+	@FindBy(xpath = "(//span[text()='5'])[1]")
 	private @Getter WebElement Cartvalue5;
 	
 	@FindBy(xpath = "//div//span[text()='Empty Cart']")
