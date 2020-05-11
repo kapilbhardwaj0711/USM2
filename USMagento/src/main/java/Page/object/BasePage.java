@@ -64,6 +64,9 @@ public class BasePage
 	@FindBy(xpath = "(//a/span[text()='Ebooks'])[1]")
 	private @Getter WebElement EbookCategory;
 	
+	@FindBy(xpath = "(//a//span[@class='counter qty'])[1]")
+	private @Getter WebElement nullValue;
+	
 	
 	@FindBy(xpath = "(//a/span[text()='Books'])[1]")
 	private @Getter WebElement BooksCategory;

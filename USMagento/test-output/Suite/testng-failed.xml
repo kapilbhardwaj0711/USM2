@@ -11,8 +11,8 @@
     <classes>
       <class name="Script.UserProductPurchase">
         <methods>
-          <include name="maxCartCount"/>
           <include name="precondition"/>
+          <include name="validUserProductPurchase"/>
           <include name="postcondition"/>
         </methods>
       </class> <!-- Script.UserProductPurchase -->
