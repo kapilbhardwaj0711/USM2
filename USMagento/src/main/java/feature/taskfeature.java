@@ -825,18 +825,21 @@ Thread.sleep(5000);
   
   public void searchProductByFormat(String username,String password, String isbnsearch, String Author, String title, String keyword) throws Exception {
 	  
-	  ValidLogin(username, password);
+	   ValidLogin(username, password);
 	  
 	  Thread.sleep(1000);
 	  
 	  tm.customSearchProduct(isbnsearch);
-	  Thread.sleep(5000);
+	 
 	  tm.customSearchProduct(title);
-	  Thread.sleep(5000);
+	 
 	  tm.customSearchProduct(Author);
+	  
+	  tm.customSearchProduct(keyword);
+	  
+	  
 	  Thread.sleep(5000);
-	  tm.customSearchProduct(title);
-	  Thread.sleep(5000);
+	action.moveToElement(bp.getMycartIcon()).moveToElement(bp.getViewCartBtn()).click().build().perform();
 	  
 	  
   	
@@ -844,7 +847,45 @@ Thread.sleep(5000);
 	  
 	  
   }
-  	
+   public void ESubscribeAlert(String username, String password) throws Exception {
+	  
+	  ValidLogin(username, password);
+	  
+	  Thread.sleep(2000);
+	  JavascriptExecutor jre = (JavascriptExecutor)driver;
+	  jre.executeScript("window.scrollBy(0,800)");
+	  
+	  mac.getEAlertlink().click();
+	  Thread.sleep(2000);
+	  mac.getFirstSubsBox().click();
+	  mac.getSecondSubsBox().click();
+	  mac.getSaveBtn().click();
+	  
+	  
+  }
+  
+  
+  public void logOut() throws Exception  {
+	  
+	  action.moveToElement(hp.getUserIcon()).moveToElement(hp.getLogOutBtm()).click().build().perform();
+	  
+	  Assert.assertEquals(driver.findElement(By.xpath("//a[contains(text(),'Log In')]")).getText(), "Log In");
+	  
+  }
+  
+ public void wishList(String username, String password) throws Exception {
+	  
+	  ValidLogin(username, password);
+	  
+	  hp.getStoreLogo().click();
+	  Thread.sleep(10000);
+	  
+	  hp.getWishlistItem().click();
+	  
+	  Assert.assertEquals(driver.findElement(By.xpath("//a[@class='product-item-link']")).getText(), driver.findElement(By.xpath("(//a[@class='product-item-link'])[1]")).getText());
+ }
+  
+	
 
 
 }
