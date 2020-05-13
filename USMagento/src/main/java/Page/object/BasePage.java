@@ -16,7 +16,7 @@ public class BasePage
 	@FindBy(id="search")
 	private @Getter WebElement searchBar;
 	
-	@FindBy(id="product-addtocart-button")
+	@FindBy(xpath="(//span[text()='Add to Cart'])[1]")
 	private @Getter WebElement addToCartbtn;
 	
 	@FindBy(xpath = "//div[@class='minicart-wrapper']/a[@class='action showcart']")
@@ -28,10 +28,10 @@ public class BasePage
 	@FindBy(xpath = "//button/span[text()='Proceed to Checkout']")
 	private @Getter WebElement proceedTochckBtn;
 	
-	@FindBy(xpath = "//dt[text()='Price']")
+	@FindBy(xpath = "//div[text()='Price']")
 	private @Getter WebElement priceFilterBtn;
 	
-	@FindBy(xpath = "//*[@id=\"narrow-by-list\"]/dd[2]/ol/li[2]/a")
+	@FindBy(xpath = "//span[text()='$99.99']")
 	private @Getter WebElement priceFilterValue;
 	
 	@FindBy(xpath = "//a[@class='logo']")
@@ -67,6 +67,12 @@ public class BasePage
 	
 	@FindBy(xpath = "(//a/span[text()='Books'])[1]")
 	private @Getter WebElement BooksCategory;
+	
+	@FindBy(xpath="//div[text()='Publication Year']")
+	private @Getter WebElement pbYearFilter;
+	
+	@FindBy(xpath="(//div[@class='filter-options-content'])[2]//li")
+	private @Getter WebElement yrFilterValue;
 	
 	public BasePage(WebDriver driver)
 	{

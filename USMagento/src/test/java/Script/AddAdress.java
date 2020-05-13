@@ -8,7 +8,7 @@ import feature.taskfeature;
 
 public class AddAdress extends baseLib implements Data 
 {
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void editbilladress() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
@@ -21,7 +21,7 @@ public class AddAdress extends baseLib implements Data
 		tf.addnewAdress(username, password, company, telephone, street, city, zip, country, state);
 	}
 	
-	@Test(priority=1)
+	@Test(priority=2)
 	public void deleteAddressTest() throws Exception {
 		
 		taskfeature tf = new taskfeature(driver);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[suite is executed Wed May 13 13:00:41 IST 2020]]>
+      <![CDATA[suite is executed Wed May 13 14:19:12 IST 2020]]>
     </line>
     <line>
       <![CDATA[chrome Launched]]>
@@ -11,35 +11,60 @@
       <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/ url is navigated]]>
     </line>
     <line>
-      <![CDATA[validLogin script execustion startsWed May 13 13:00:52 IST 2020]]>
+      <![CDATA[FilterCheck script execustion startsWed May 13 14:19:34 IST 2020]]>
     </line>
     <line>
-      <![CDATA[validLogin script is failed]]>
+      <![CDATA[FilterCheck script is passed]]>
     </line>
     <line>
-      <![CDATA[validLogin script is failed]]>
-    </line>
-    <line>
-      <![CDATA[suite execution end :Wed May 13 13:00:56 IST 2020]]>
-    </line>
-    <line>
-      <![CDATA[total suite execution time 0mins]]>
-    </line>
-    <line>
-      <![CDATA[total scrpt executed 1]]>
-    </line>
-    <line>
-      <![CDATA[total script passed 0]]>
-    </line>
-    <line>
-      <![CDATA[total scrpt failed 2]]>
-    </line>
-    <line>
-      <![CDATA[total scrpt skipped 0]]>
+      <![CDATA[browser closed]]>
     </line>
   </reporter-output>
-  <suite name="Suite" duration-ms="0" started-at="2020-05-13T07:30:56Z" finished-at="2020-05-13T07:30:56Z">
+  <suite name="Suite" duration-ms="73718" started-at="2020-05-13T08:49:12Z" finished-at="2020-05-13T08:50:26Z">
     <groups>
     </groups>
+    <test name="Test" duration-ms="73718" started-at="2020-05-13T08:49:12Z" finished-at="2020-05-13T08:50:26Z">
+      <class name="Script.CheckFilter">
+        <test-method status="PASS" signature="precondition(java.lang.String, java.lang.String)[pri:0, instance:Script.CheckFilter@6a41eaa2]" name="precondition" is-config="true" duration-ms="21715" started-at="2020-05-13T08:49:12Z" finished-at="2020-05-13T08:49:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[chrome Launched]]>
+            </line>
+            <line>
+              <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/ url is navigated]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- precondition -->
+        <test-method status="PASS" signature="FilterCheck()[pri:0, instance:Script.CheckFilter@6a41eaa2]" name="FilterCheck" duration-ms="50820" started-at="2020-05-13T08:49:34Z" finished-at="2020-05-13T08:50:25Z">
+          <reporter-output>
+            <line>
+              <![CDATA[FilterCheck script execustion startsWed May 13 14:19:34 IST 2020]]>
+            </line>
+            <line>
+              <![CDATA[FilterCheck script is passed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- FilterCheck -->
+        <test-method status="PASS" signature="postcondition()[pri:0, instance:Script.CheckFilter@6a41eaa2]" name="postcondition" is-config="true" duration-ms="973" started-at="2020-05-13T08:50:25Z" finished-at="2020-05-13T08:50:26Z">
+          <reporter-output>
+            <line>
+              <![CDATA[browser closed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- postcondition -->
+      </class> <!-- Script.CheckFilter -->
+    </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

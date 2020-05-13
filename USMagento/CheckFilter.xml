@@ -7,7 +7,7 @@
 </listeners>
   <test name="Test"  thread-count="3">
   <parameter name ="browser" value="chrome"/>
-  <parameter name ="baseurl" value="https://www.store.elsevierhealth.com/asia/"/>
+  <parameter name ="baseurl" value="https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/"/>
    <classes>
       <class name="Script.CheckFilter"/>
     </classes>

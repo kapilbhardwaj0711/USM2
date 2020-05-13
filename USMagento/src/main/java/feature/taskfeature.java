@@ -317,7 +317,7 @@ public void EditBillingAddress(String username, String password,String street,St
 {
 	 ValidLogin(username, password); 
 	 mac.getMangeAcBtn().click();
-	 wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Change Billing Address")));
+Thread.sleep(5000);
 
 	 driver.findElement(By.linkText("Change Billing Address")).click();
 
@@ -333,7 +333,8 @@ public void EditBillingAddress(String username, String password,String street,St
 	 eap.getZipcode().sendKeys(Keys.DELETE);
 	 eap.getZipcode().sendKeys(zip);
 	 
-	 wait.until(ExpectedConditions.elementToBeSelected(eap.getCountry()));
+	 Thread.sleep(5000);
+	 //wait.until(ExpectedConditions.elementToBeSelected(eap.getCountry()));
 	 Select sel = new Select(eap.getCountry());
 	 sel.selectByVisibleText(country);
 	 
@@ -342,7 +343,7 @@ public void EditBillingAddress(String username, String password,String street,St
 	 sel1.selectByVisibleText(state);
 	 eap.getSubmit().click();
 	 
-	 //Thread.sleep(3000);
+	 Thread.sleep(3000);
 	 Assert.assertEquals("You saved the address.", driver.findElement(By.xpath("//div[@data-bind='html: message.text']")).getText());
    
    }
@@ -362,7 +363,7 @@ public void EditBillingAddress(String username, String password,String street,St
 	   }
 	   
 
-	  Thread.sleep(4000);
+	  Thread.sleep(10000);
 	   eap.getStreet1().sendKeys(street);
 	   anap.getCompanyName().sendKeys(company);
 	   anap.getTelephone().sendKeys(telephone);
@@ -412,10 +413,19 @@ public void EditBillingAddress(String username, String password,String street,St
 	   	   
 	    jre = (JavascriptExecutor)driver;
 	   jre.executeScript("window.scrollBy(0,200)");
-	   
+	   jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getPriceFilterBtn());
 	   bp.getPriceFilterBtn().click();
-	   Thread.sleep(2000);
+	   Thread.sleep(3000);
+	   jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getPriceFilterValue());
 	   bp.getPriceFilterValue().click();
+	   
+	   Thread.sleep(3000);
+	   jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getPbYearFilter());
+	   bp.getPbYearFilter().click();
+	   Thread.sleep(3000);
+	   jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getYrFilterValue());
+	   bp.getYrFilterValue().click();
+	   Thread.sleep(3000);
 	   //Thread.sleep(5000);
 	   //mp.getProductItem().click();
 	   
