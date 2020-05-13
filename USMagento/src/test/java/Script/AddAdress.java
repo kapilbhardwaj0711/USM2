@@ -8,7 +8,7 @@ import feature.taskfeature;
 
 public class AddAdress extends baseLib implements Data 
 {
-	@Test(priority = 3)
+	/*@Test(priority = 3)
 	public void editbilladress() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
@@ -27,5 +27,17 @@ public class AddAdress extends baseLib implements Data
 		taskfeature tf = new taskfeature(driver);
 		tf.deleteAdress(username, password);
 		
+	}*/
+	/*@Test(priority = 1)
+	public void EAlertSubscription() throws Exception {
+		taskfeature tf = new taskfeature(driver);
+		tf.ESubscribeAlert(username, password);
+		tf.logOut();
+	}*/
+	
+	@Test(priority = 1)
+	public void wishList() throws Exception {
+		taskfeature tf = new taskfeature(driver);
+		tf.wishList(username, password);
 	}
 }

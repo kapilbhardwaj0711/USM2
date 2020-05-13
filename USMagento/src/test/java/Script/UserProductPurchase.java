@@ -8,7 +8,7 @@ import feature.taskfeature;
 
 public class UserProductPurchase extends baseLib implements Data
 {
-/*	@Test(priority = 1)
+	/*@Test(priority = 1)
 	public void validUserProductPurchase() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
@@ -21,14 +21,14 @@ public class UserProductPurchase extends baseLib implements Data
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.GuestUserProductPurchase(username, password, product, Guestemail, firstname, lastname, street, company, city, state, zip, country, telephone);
-	}
-*/
-	@Test(priority = 3)
+	}*/
+
+	/*@Test(priority = 3)
 	public void maxCartCount() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.CartCount(username, password);
-	}
+	}*/
 	
 /*	@Test(priority=4)
 	public void AddtoCart() throws Exception

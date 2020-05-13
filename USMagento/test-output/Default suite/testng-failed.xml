@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Script.UserProductPurchase">
+      <class name="Script.AddAdress">
         <methods>
           <include name="precondition"/>
-          <include name="validEBookPurchaseUser"/>
+          <include name="EAlertSubscription"/>
           <include name="postcondition"/>
         </methods>
-      </class> <!-- Script.UserProductPurchase -->
+      </class> <!-- Script.AddAdress -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

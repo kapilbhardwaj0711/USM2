@@ -13,20 +13,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import Page.object.BasePage;
+import Page.object.HomePage;
 
 public class Utility 
 {
 	WebDriver driver;
 	BasePage bp;
 	WebDriverWait wait;
+	HomePage hp;
     public Utility(WebDriver driver)
     {
     	this.driver=driver;
     	bp = new BasePage(driver);
     	wait=new WebDriverWait(driver, 20);
+    	hp=new HomePage(driver);
     }
     public void searchFuc(String product) throws InterruptedException
     {
+    	hp.getStoreLogo().click();
     	Thread.sleep(1000);
     	bp.getSearchBar().sendKeys(product,Keys.ENTER);
     	
@@ -83,9 +87,26 @@ public class Utility
     
     public void customSearchProduct(String product) throws InterruptedException {
     	bp.getSearchBar().sendKeys(product,Keys.ENTER);
+    	
   	  	Thread.sleep(3000);
   	  JavascriptExecutor jre = (JavascriptExecutor)driver;
   	   jre.executeScript("window.scrollBy(0,400)");
+  	   
+  	 List<WebElement> links = driver.findElements(By.xpath("//a"));
+ 	
+ 	Iterator<WebElement> itr = links.iterator();
+ 	
+ 	
+ 	while (itr.hasNext()) 
+ 	{
+ 		WebElement value = itr.next();
+ 		if (value.getText().equals(product)) 
+			{
+				value.click();
+				break;
+			}
+			
+		}
   	   Thread.sleep(10000);
   	   bp.getAddToCartbtn().click();
   	 

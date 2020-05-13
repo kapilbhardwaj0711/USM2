@@ -23,6 +23,7 @@ public class LoginPage
 	    
 	    @FindBy(xpath = "//a/span[text()='Forgot Your Password?'][1]")
 	    private @Getter WebElement ForgetPassbtn;
+	    
 	   
 	   public LoginPage(WebDriver driver)
 	   {

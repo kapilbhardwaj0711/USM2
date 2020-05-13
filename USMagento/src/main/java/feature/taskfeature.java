@@ -71,6 +71,7 @@ public class taskfeature
 	   srp=new SearchResultPage(driver);
 	   fpp= new ForgetPasswordPage(driver);
 	   wait= new WebDriverWait(driver, 20);
+	   action=new Actions(driver);
    }
    
    public void ValidLogin(String username , String password) throws Exception
@@ -752,20 +753,60 @@ Thread.sleep(5000);
 	  Thread.sleep(1000);
 	  
 	  tm.customSearchProduct(isbnsearch);
-	  Thread.sleep(5000);
+	 // Thread.sleep(5000);
 	  tm.customSearchProduct(title);
-	  Thread.sleep(5000);
+	 // Thread.sleep(5000);
 	  tm.customSearchProduct(Author);
-	  Thread.sleep(5000);
-	  tm.customSearchProduct(title);
-	  Thread.sleep(5000);
+	  //Thread.sleep(5000);
+	  tm.customSearchProduct(keyword);
+	  //Thread.sleep(5000);
 	  
+	  Thread.sleep(5000);
+	action.moveToElement(bp.getMycartIcon()).moveToElement(bp.getViewCartBtn()).click().build().perform();
 	  
-  	
-	   
+		  
+	  
+  }
+  
+  
+  public void ESubscribeAlert(String username, String password) throws Exception {
+	  
+	  ValidLogin(username, password);
+	  
+	  Thread.sleep(2000);
+	  JavascriptExecutor jre = (JavascriptExecutor)driver;
+	  jre.executeScript("window.scrollBy(0,800)");
+	  
+	  mac.getEAlertlink().click();
+	  Thread.sleep(2000);
+	  mac.getFirstSubsBox().click();
+	  mac.getSecondSubsBox().click();
+	  mac.getSaveBtn().click();
 	  
 	  
   }
+  
+  
+  public void logOut() throws Exception  {
+	  
+	  action.moveToElement(hp.getUserIcon()).moveToElement(hp.getLogOutBtm()).click().build().perform();
+	  
+	  Assert.assertEquals(driver.findElement(By.xpath("//a[contains(text(),'Log In')]")).getText(), "Log In");
+	  
+  }
+  
+ public void wishList(String username, String password) throws Exception {
+	  
+	  ValidLogin(username, password);
+	  
+	  hp.getStoreLogo().click();
+	  Thread.sleep(10000);
+	  
+	  hp.getWishlistItem().click();
+	  
+	  Assert.assertEquals(driver.findElement(By.xpath("//a[@class='product-item-link']")).getText(), driver.findElement(By.xpath("(//a[@class='product-item-link'])[1]")).getText());
+ }
+  
   	
 }
    

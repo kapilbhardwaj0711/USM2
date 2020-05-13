@@ -9,13 +9,13 @@
     <parameter name="baseurl" value="https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/"/>
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="Script.CheckFilter">
+      <class name="Script.AddAdress">
         <methods>
-          <include name="FilterCheck"/>
           <include name="precondition"/>
           <include name="postcondition"/>
+          <include name="wishList"/>
         </methods>
-      </class> <!-- Script.CheckFilter -->
+      </class> <!-- Script.AddAdress -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
