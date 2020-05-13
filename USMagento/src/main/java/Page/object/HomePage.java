@@ -29,6 +29,9 @@ private @Getter WebElement storeLogo;
   
   @FindBy(xpath="//a[contains(text(),'Log Out')]")
   private @Getter WebElement logOutBtm;
+	
+	@FindBy (xpath="(//a[@data-action=\"add-to-wishlist\"])[1]")
+  private @Getter WebElement wishlistItem;
   
   public HomePage(WebDriver driver)
   {
