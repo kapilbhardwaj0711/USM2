@@ -26,6 +26,10 @@ public interface Data
 	final String company="jobkart";
 	final String Guestemail="test107@gmail.com";
 	final String isbn="9780323636360";
+	final String isbnsearch="9788131249987";
+	final String author="Robin Maunder";
+	final String title="Pierson and Fairchild's Principles & Techniques of Patient Care";
+	final String keyword="Health Nursing";
 	
 	final int Discount =30;
 	final String coupon ="US30";

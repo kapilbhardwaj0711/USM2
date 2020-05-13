@@ -9,11 +9,16 @@ import lombok.Getter;
 
 public class HomePage 
 {
-  @FindBy(linkText = "Medicine")
-  private @Getter WebElement medicineBtn;
+  @FindBy(xpath = "(//a[@class='ammenu-link -main -parent                           '])[1]")
+  private @Getter WebElement subjectBtn;
   
-  @FindBy(linkText = "Infectious Disease")
-  private @Getter WebElement infectionDiseaseBtn;
+  @FindBy(xpath="(//a[@title='Medicine'])[1]")
+  private @Getter WebElement medicineBtn;
+  		
+  		
+  
+  @FindBy(xpath = "//a[@title='Anatomy' ]/span[1]")
+  private @Getter WebElement anatomyBtn;
   
   @FindBy(linkText = "e-Books")
   private @Getter WebElement ebooksbtn;
