@@ -28,12 +28,12 @@ public class AddAdress extends baseLib implements Data
 		tf.deleteAdress(username, password);
 		
 	}*/
-	/*@Test(priority = 1)
+	@Test(priority = 1)
 	public void EAlertSubscription() throws Exception {
 		taskfeature tf = new taskfeature(driver);
 		tf.ESubscribeAlert(username, password);
 		tf.logOut();
-	}*/
+	}
 	
 	@Test(priority = 1)
 	public void wishList() throws Exception {
