@@ -53,8 +53,61 @@ public class Utility
     }
     public void clearCart()
     {
-       bp.getClearcartBtn().click();
-  	   Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(), "You have no items in your shopping cart.");
+    	
+    	try 
+    	{
+    	if (bp.getNullValue().getText()=="0") 
+    	{
+			System.out.println("value is 0 ");
+		}
+    	else 
+    	{
+    		   WebDriverWait wait = new WebDriverWait(driver, 10);
+    	    //	wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue()));
+    	    	bp.getCartvalue();
+    	    		
+    			bp.getMycartIcon().click();
+    		   	wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+    		   	bp.getViewCartBtn().click();
+    		   	wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
+    			bp.getClearcartBtn().click();
+    		  Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(), "You have no items in your shopping cart.");
+    		  		
+		}
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+    	}
+    	
+		
+		/*
+		 * bp.getCartvalue(); WebDriverWait wait = new WebDriverWait(driver, 10);
+		 * bp.getMycartIcon().click();
+		 * wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+		 * bp.getViewCartBtn().click(); bp.getClearcartBtn().click();
+		 * Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(),
+		 * "You have no items in your shopping cart.");
+		 */ 
+    	
+   /* 	if (bp.getNullValue().getText()=="0") 
+    	{
+    		System.out.println("cart value is 0");
+		  	
+		}
+    	else 
+    	{	
+    		bp.getCartvalue();
+    		WebDriverWait wait = new WebDriverWait(driver, 10);
+			bp.getMycartIcon().click();
+	   		wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+	   		bp.getViewCartBtn().click();
+		   bp.getClearcartBtn().click();
+	  	   Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(), "You have no items in your shopping cart.");
+    		
+    				
+		}
+    */   
     }
     
     public void CartCount() throws InterruptedException

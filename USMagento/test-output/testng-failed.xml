@@ -11,7 +11,12 @@
     <classes>
       <class name="Script.AddAdress">
         <methods>
+
+
+          <include name="FilterCheck"/>
+
           <include name="precondition"/>
+          <include name="validUserProductPurchase"/>
           <include name="postcondition"/>
           <include name="wishList"/>
         </methods>

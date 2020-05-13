@@ -5,8 +5,12 @@
     <classes>
       <class name="Script.AddAdress">
         <methods>
+          <include name="EbookMaxCountToCart"/>
           <include name="precondition"/>
+<<<<<<< HEAD
           <include name="EAlertSubscription"/>
+=======
+>>>>>>> d9b7bc4fcbe92573d20ccd44cdf6f2d14c9a03da
           <include name="postcondition"/>
         </methods>
       </class> <!-- Script.AddAdress -->

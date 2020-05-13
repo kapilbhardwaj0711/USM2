@@ -28,7 +28,7 @@ public class AddAdress extends baseLib implements Data
 		tf.deleteAdress(username, password);
 		
 	}*/
-	@Test(priority = 1)
+	@Test(priority = 2)
 	public void EAlertSubscription() throws Exception {
 		taskfeature tf = new taskfeature(driver);
 		tf.ESubscribeAlert(username, password);
@@ -40,4 +40,5 @@ public class AddAdress extends baseLib implements Data
 		taskfeature tf = new taskfeature(driver);
 		tf.wishList(username, password);
 	}
+	
 }
