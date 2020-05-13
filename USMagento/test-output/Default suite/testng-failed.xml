@@ -5,8 +5,8 @@
     <classes>
       <class name="Script.UserProductPurchase">
         <methods>
+          <include name="EbookMaxCountToCart"/>
           <include name="precondition"/>
-          <include name="validEBookPurchaseUser"/>
           <include name="postcondition"/>
         </methods>
       </class> <!-- Script.UserProductPurchase -->

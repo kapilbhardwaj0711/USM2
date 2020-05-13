@@ -17,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -153,10 +154,20 @@ public class taskfeature
    }
    public void ValidUserproductPurchase(String username,String password,String product) throws Exception
    {
+
 	   ValidLogin(username, password);
 	   
 //	   bp.ClearCart();
 	   tm.searchFuc(product);
+
+	   	  ValidLogin(username, password);
+	   	JavascriptExecutor jre = (JavascriptExecutor)driver; 
+//	    jre.executeScript("window.scrollBy(0,-100)");
+	    
+	   	Thread.sleep(3000);
+	   	  tm.clearCart();
+	   	  tm.searchFuc(product);
+
 //	   srp.getFirstProductOnSearch().click();
 //	   String title = bp.getProductTitle().getText();
 //	    String expected = tm.trncString(bp.getProductTitle().getText());
@@ -172,12 +183,13 @@ public class taskfeature
 		   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
 		   bp.getViewCartBtn().click();
 //		   Thread.sleep(2000);
-		   JavascriptExecutor jre = (JavascriptExecutor)driver;
+		   
 		   jre.executeScript("window.scrollBy(0,100)");
 		   wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
 		   bp.getProceedTochckBtn().click();
 	   
 }
+
    public void EbookPurchaseValidUser(String username ,String password,String Ebook ) throws Exception 
    {
 	   ValidLogin(username, password);
@@ -188,6 +200,19 @@ public class taskfeature
 	  act.moveToElement(prod);
 	  paperbook.click();
 //	   Thread.sleep(5000);
+
+   public void ValidMaxCartCount(String username ,String password ) throws Exception 
+   {
+	   ValidLogin(username, password);
+	   
+		JavascriptExecutor jre = (JavascriptExecutor)driver;
+	   	jre.executeScript("window.scrollBy(0,-100)");
+	   	tm.clearCart();
+	   Actions act = new Actions(driver);
+	   act.moveToElement(bp.getProductFormat()).perform();
+	   bp.getEbookCategory().click();
+	   Thread.sleep(2000);
+
 //	   bp.ClearCart();
 /*	   	String val = bp.getCartvalue().getText();
 //	    int value = Integer.parseInt(val);
@@ -213,8 +238,18 @@ public class taskfeature
 		   WebElement book = numberofbooks.get(i);
 		   book.click();
 	   }
+
 	   Thread.sleep(10000);
 	   JavascriptExecutor jre = (JavascriptExecutor)driver;
+
+	   
+	   
+/*	   JavascriptExecutor jre = (JavascriptExecutor)driver;
+	   jre.executeScript("window.scrollBy(0,-300)");
+*/	   WebDriverWait wait = new WebDriverWait(driver, 30);
+//	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
+	   
+
 	   jre.executeScript("window.scrollBy(0,-300)");
 	   WebDriverWait wait = new WebDriverWait(driver, 30);
 	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
@@ -229,6 +264,7 @@ public class taskfeature
 		   Ebook1.click();
 		   
 		}
+
 	   jre.executeScript("window.scrollBy(0,-300)");
 	   Thread.sleep(10000);
 	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
@@ -236,10 +272,51 @@ public class taskfeature
 	   bp.getMycartIcon().click();
 	   bp.getViewCartBtn().click();
 	   Thread.sleep(2000);
+
+		   JavascriptExecutor jre1 = (JavascriptExecutor)driver;
+		   jre1.executeScript("window.scrollBy(0,-400)");
+		   
+		   
+		   Assert.assertEquals(bp.getCartvalue().getText(), "10");
+//	       wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
+		   bp.getMycartIcon().click();
+		   
+		   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+		   bp.getViewCartBtn().click();
+		   
+
 	  
 //	   bp.getProceedTochckBtn().click();
 //	   String title = "Checkout";
 //	   Assert.assertEquals(driver.getTitle(),title);
+	   
+   }
+   public void EbookMaxCount() throws InterruptedException
+   {
+	   JavascriptExecutor jre = (JavascriptExecutor)driver; 
+	    jre.executeScript("window.scrollBy(0,-100)");
+	    
+	 //   String val = bp.getNullValue().getText();
+	 //   System.out.println(val);
+	    tm.clearCart();
+	   Actions act = new Actions(driver);
+	   act.moveToElement(bp.getProductFormat()).perform();
+	   bp.getEbookCategory().click();
+	   Thread.sleep(2000);
+	   
+	   List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
+		
+	   for (int i = 0; i < 7; i++) 
+	   {
+		   WebElement book = numberofbooks.get(i);
+		   book.click();
+		   Thread.sleep(2000);
+		  
+	   }
+	   JavascriptExecutor jre1 = (JavascriptExecutor)driver;
+	   jre1.executeScript("window.scrollBy(0,-400)");
+	   
+	   Assert.assertEquals(bp.getCartvalue().getText(), "5");
 	   
    }
    
@@ -744,6 +821,7 @@ Thread.sleep(5000);
 	   
 	   
   }
+
   
   public void searchProductByFormat(String username,String password, String isbnsearch, String Author, String title, String keyword) throws Exception {
 	  
@@ -767,6 +845,8 @@ Thread.sleep(5000);
 	  
   }
   	
+
+
 }
    
 

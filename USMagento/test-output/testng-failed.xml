@@ -11,8 +11,11 @@
     <classes>
       <class name="Script.CheckFilter">
         <methods>
+
           <include name="FilterCheck"/>
+
           <include name="precondition"/>
+          <include name="validUserProductPurchase"/>
           <include name="postcondition"/>
         </methods>
       </class> <!-- Script.CheckFilter -->
