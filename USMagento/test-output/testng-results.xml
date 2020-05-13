@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
   <reporter-output>
     <line>
-      <![CDATA[suite is executed Thu May 07 20:07:26 IST 2020]]>
+      <![CDATA[suite is executed Wed May 13 13:00:41 IST 2020]]>
     </line>
     <line>
       <![CDATA[chrome Launched]]>
@@ -11,97 +11,35 @@
       <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/ url is navigated]]>
     </line>
     <line>
-      <![CDATA[maxCartCount script execustion startsThu May 07 20:08:11 IST 2020]]>
+      <![CDATA[validLogin script execustion startsWed May 13 13:00:52 IST 2020]]>
     </line>
     <line>
-      <![CDATA[maxCartCount script is failed]]>
+      <![CDATA[validLogin script is failed]]>
     </line>
     <line>
-      <![CDATA[browser closed]]>
+      <![CDATA[validLogin script is failed]]>
+    </line>
+    <line>
+      <![CDATA[suite execution end :Wed May 13 13:00:56 IST 2020]]>
+    </line>
+    <line>
+      <![CDATA[total suite execution time 0mins]]>
+    </line>
+    <line>
+      <![CDATA[total scrpt executed 1]]>
+    </line>
+    <line>
+      <![CDATA[total script passed 0]]>
+    </line>
+    <line>
+      <![CDATA[total scrpt failed 2]]>
+    </line>
+    <line>
+      <![CDATA[total scrpt skipped 0]]>
     </line>
   </reporter-output>
-  <suite name="Suite" duration-ms="102142" started-at="2020-05-07T14:37:26Z" finished-at="2020-05-07T14:39:08Z">
+  <suite name="Suite" duration-ms="0" started-at="2020-05-13T07:30:56Z" finished-at="2020-05-13T07:30:56Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="102142" started-at="2020-05-07T14:37:26Z" finished-at="2020-05-07T14:39:08Z">
-      <class name="Script.UserProductPurchase">
-        <test-method status="PASS" signature="precondition(java.lang.String, java.lang.String)[pri:0, instance:Script.UserProductPurchase@3bfdc050]" name="precondition" is-config="true" duration-ms="44710" started-at="2020-05-07T14:37:26Z" finished-at="2020-05-07T14:38:11Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[chrome Launched]]>
-            </line>
-            <line>
-              <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/ url is navigated]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- precondition -->
-        <test-method status="FAIL" signature="maxCartCount()[pri:3, instance:Script.UserProductPurchase@3bfdc050]" name="maxCartCount" duration-ms="56124" started-at="2020-05-07T14:38:11Z" finished-at="2020-05-07T14:39:07Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [10] but found [18]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [10] but found [18]
-at org.testng.Assert.fail(Assert.java:96)
-at org.testng.Assert.failNotEquals(Assert.java:776)
-at org.testng.Assert.assertEqualsImpl(Assert.java:137)
-at org.testng.Assert.assertEquals(Assert.java:118)
-at org.testng.Assert.assertEquals(Assert.java:453)
-at org.testng.Assert.assertEquals(Assert.java:463)
-at feature.taskfeature.CartCount(taskfeature.java:236)
-at Script.UserProductPurchase.maxCartCount(UserProductPurchase.java:30)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.access$000(SuiteRunner.java:40)
-at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:489)
-at org.testng.internal.thread.ThreadUtil$1.call(ThreadUtil.java:52)
-at java.util.concurrent.FutureTask.run(Unknown Source)
-at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-            <line>
-              <![CDATA[maxCartCount script execustion startsThu May 07 20:08:11 IST 2020]]>
-            </line>
-            <line>
-              <![CDATA[maxCartCount script is failed]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- maxCartCount -->
-        <test-method status="PASS" signature="postcondition()[pri:0, instance:Script.UserProductPurchase@3bfdc050]" name="postcondition" is-config="true" duration-ms="832" started-at="2020-05-07T14:39:07Z" finished-at="2020-05-07T14:39:08Z">
-          <reporter-output>
-            <line>
-              <![CDATA[browser closed]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- postcondition -->
-      </class> <!-- Script.UserProductPurchase -->
-    </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

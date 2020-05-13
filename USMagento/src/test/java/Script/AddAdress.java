@@ -8,16 +8,24 @@ import feature.taskfeature;
 
 public class AddAdress extends baseLib implements Data 
 {
-	@Test(priority = 1)
+	@Test(priority = 2)
 	public void editbilladress() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.EditBillingAddress(username, password, street, city, state, zip, country);
 	}
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void addNewaddress() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.addnewAdress(username, password, company, telephone, street, city, zip, country, state);
+	}
+	
+	@Test(priority=1)
+	public void deleteAddressTest() throws Exception {
+		
+		taskfeature tf = new taskfeature(driver);
+		tf.deleteAdress(username, password);
+		
 	}
 }
