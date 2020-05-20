@@ -2,8 +2,8 @@ package InternalData;
 
 public interface Data 
 {
-	final String username="kapil.bhardwaj@infoprolearning.com";
-	final String password="infopro@123";
+	final String username="testuat2@gmail.com";
+	final String password="Test@123";
 	
 	final String username1="kapil.bhardwaj@infoprolearning.com";
 	final String password1="infopro";
@@ -27,9 +27,9 @@ public interface Data
 	final String Guestemail="test107@gmail.com";
 	final String isbn="9780323636360";
 	final String isbnsearch="9788131249987";
-	final String author="Robin Maunder";
+	final String author="Maggie";
 	final String title="Pierson and Fairchild's Principles & Techniques of Patient Care";
-	final String keyword="Health Nursing";
+	final String keyword="math";
 	
 	final int Discount =30;
 	final String coupon ="US30";

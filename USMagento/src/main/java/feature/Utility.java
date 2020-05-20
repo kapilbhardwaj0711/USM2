@@ -13,20 +13,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import Page.object.BasePage;
+import Page.object.HomePage;
 
 public class Utility 
 {
 	WebDriver driver;
 	BasePage bp;
 	WebDriverWait wait;
+	HomePage hp;
     public Utility(WebDriver driver)
     {
     	this.driver=driver;
     	bp = new BasePage(driver);
     	wait=new WebDriverWait(driver, 20);
+    	hp=new HomePage(driver);
     }
     public void searchFuc(String product) throws InterruptedException
     {
+    	hp.getStoreLogo().click();
     	Thread.sleep(1000);
     	bp.getSearchBar().sendKeys(product,Keys.ENTER);
     	
@@ -77,33 +81,7 @@ public class Utility
     	}
     	
 		
-		/*
-		 * bp.getCartvalue(); WebDriverWait wait = new WebDriverWait(driver, 10);
-		 * bp.getMycartIcon().click();
-		 * wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-		 * bp.getViewCartBtn().click(); bp.getClearcartBtn().click();
-		 * Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(),
-		 * "You have no items in your shopping cart.");
-		 */ 
-    	
-   /* 	if (bp.getNullValue().getText()=="0") 
-    	{
-    		System.out.println("cart value is 0");
-		  	
-		}
-    	else 
-    	{	
-    		bp.getCartvalue();
-    		WebDriverWait wait = new WebDriverWait(driver, 10);
-			bp.getMycartIcon().click();
-	   		wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   		bp.getViewCartBtn().click();
-		   bp.getClearcartBtn().click();
-	  	   Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(), "You have no items in your shopping cart.");
-    		
-    				
-		}
-    */   
+		
     }
     
     public void CartCount() throws InterruptedException
@@ -136,9 +114,26 @@ public class Utility
     
     public void customSearchProduct(String product) throws InterruptedException {
     	bp.getSearchBar().sendKeys(product,Keys.ENTER);
+    	
   	  	Thread.sleep(3000);
   	  JavascriptExecutor jre = (JavascriptExecutor)driver;
   	   jre.executeScript("window.scrollBy(0,400)");
+  	   
+  	 List<WebElement> links = driver.findElements(By.xpath("//a"));
+ 	
+ 	Iterator<WebElement> itr = links.iterator();
+ 	
+ 	
+ 	while (itr.hasNext()) 
+ 	{
+ 		WebElement value = itr.next();
+ 		if (value.getText().equals(product)) 
+			{
+				value.click();
+				break;
+			}
+			
+		}
   	   Thread.sleep(10000);
   	   bp.getAddToCartbtn().click();
   	 

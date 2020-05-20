@@ -8,18 +8,18 @@ import feature.taskfeature;
 
 public class CreateUser extends baseLib implements Data
 {
-/*	@Test
+	@Test(priority=1)
 	public void CreateUser() throws InterruptedException
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.CreateCust(firstname, lastname, emailaddess, passwrd, cpasswrd, dateNbirth,telephone);
 	}
-*/	
+/*
 	@Test(priority=2)
 	public void ForgetPassword() throws InterruptedException
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.Forgetpassword();
-	}
+	}*/
 	
 }

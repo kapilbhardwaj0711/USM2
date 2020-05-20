@@ -8,6 +8,7 @@ import feature.taskfeature;
 
 public class UserProductPurchase extends baseLib implements Data
 {
+
 	@Test(priority = 1)
 	public void validUserProductPurchase() throws Exception
 	{
@@ -16,28 +17,31 @@ public class UserProductPurchase extends baseLib implements Data
 		
 	}
 	
-/*	@Test(priority = 2)
+@Test(priority = 2)
 	public void GuestUserProductPurchase() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.GuestUserProductPurchase(username, password, product, Guestemail, firstname, lastname, street, company, city, state, zip, country, telephone);
+
 	}
-*/
-/*	@Test(priority = 3)
+
+	@Test(priority = 3)
 	public void maxCartCount() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.ValidMaxCartCount(username, password);
 	}
-*/	
-/*	@Test(priority=4)
+	
+
+
+	@Test(priority=4)
 	public void EbookMaxCountToCart() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
 		tf.EbookMaxCount();
 	}
-*/	
-/*	@Test(priority = 5)
+
+	@Test(priority = 5)
 	public void ApplyDiscountCoupon() throws Exception
 	{
 		taskfeature tf = new taskfeature(driver);
@@ -66,5 +70,6 @@ public class UserProductPurchase extends baseLib implements Data
 		taskfeature tf = new taskfeature(driver);
 		tf.GuestUserNotBuyEbook(Ebook);
 	}
-*/	
+
+
 }

@@ -9,7 +9,7 @@ import feature.taskfeature;
 public class Search_Product extends baseLib implements Data
 {
      @Test
-     public void  Isbn() throws Exception
+     public void CustomSearchTest() throws Exception
      {
     	 taskfeature tf = new taskfeature(driver);
 

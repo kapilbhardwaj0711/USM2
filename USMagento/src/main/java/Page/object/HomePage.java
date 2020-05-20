@@ -14,14 +14,34 @@ public class HomePage
   
   @FindBy(xpath="(//a[@title='Medicine'])[1]")
   private @Getter WebElement medicineBtn;
+
   		
+  @FindBy(xpath="//a[@class='logo']")
+private @Getter WebElement storeLogo;
+
+  	
   		
+
   
   @FindBy(xpath = "//a[@title='Anatomy' ]/span[1]")
   private @Getter WebElement anatomyBtn;
   
   @FindBy(linkText = "e-Books")
   private @Getter WebElement ebooksbtn;
+	
+	@FindBy(xpath="//span[@class='logged-in']")
+  private @Getter WebElement UserIcon;
+	
+	@FindBy(xpath="//a[text()='My Account']")
+	private @Getter WebElement MyAccountLink;
+  
+  @FindBy(xpath="//a[contains(text(),'Log Out')]")
+  private @Getter WebElement logOutBtm;
+	
+	@FindBy (xpath="(//a[@data-action=\"add-to-wishlist\"])[1]")
+  private @Getter WebElement wishlistItem;
+  
+  
   
   public HomePage(WebDriver driver)
   {
