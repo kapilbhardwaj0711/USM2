@@ -81,33 +81,7 @@ public class Utility
     	}
     	
 		
-		/*
-		 * bp.getCartvalue(); WebDriverWait wait = new WebDriverWait(driver, 10);
-		 * bp.getMycartIcon().click();
-		 * wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-		 * bp.getViewCartBtn().click(); bp.getClearcartBtn().click();
-		 * Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(),
-		 * "You have no items in your shopping cart.");
-		 */ 
-    	
-   /* 	if (bp.getNullValue().getText()=="0") 
-    	{
-    		System.out.println("cart value is 0");
-		  	
-		}
-    	else 
-    	{	
-    		bp.getCartvalue();
-    		WebDriverWait wait = new WebDriverWait(driver, 10);
-			bp.getMycartIcon().click();
-	   		wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   		bp.getViewCartBtn().click();
-		   bp.getClearcartBtn().click();
-	  	   Assert.assertEquals(bp.getEmpyCartSuccessmsg().getText(), "You have no items in your shopping cart.");
-    		
-    				
-		}
-    */   
+		
     }
     
     public void CartCount() throws InterruptedException

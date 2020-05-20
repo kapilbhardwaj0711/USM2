@@ -2,8 +2,8 @@ package InternalData;
 
 public interface Data 
 {
-	final String username="kapil.bhardwaj@infoprolearning.com";
-	final String password="infopro@123";
+	final String username="testuat2@gmail.com";
+	final String password="Test@123";
 	
 	final String username1="kapil.bhardwaj@infoprolearning.com";
 	final String password1="infopro";

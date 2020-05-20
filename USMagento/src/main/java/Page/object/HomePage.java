@@ -31,6 +31,9 @@ private @Getter WebElement storeLogo;
 	
 	@FindBy(xpath="//span[@class='logged-in']")
   private @Getter WebElement UserIcon;
+	
+	@FindBy(xpath="//a[text()='My Account']")
+	private @Getter WebElement MyAccountLink;
   
   @FindBy(xpath="//a[contains(text(),'Log Out')]")
   private @Getter WebElement logOutBtm;

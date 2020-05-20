@@ -25,6 +25,7 @@ import org.testng.Reporter;
 import Page.object.AddNewAddressPage;
 import Page.object.AddressBookPage;
 import Page.object.BasePage;
+import Page.object.CheckoutPage;
 import Page.object.CreateNewCustomerAccountPage;
 import Page.object.EditAddressPage;
 import Page.object.ForgetPasswordPage;
@@ -34,12 +35,15 @@ import Page.object.LoginPage;
 import Page.object.MedicinePage;
 import Page.object.MyAccountPage;
 import Page.object.SearchResultPage;
+import Page.object.ShoppingCartPage;
+import Page.object.SuccessPage;
 
 
 
 public class taskfeature 
 {
    WebDriver driver;
+   CheckoutPage cp;
    Actions action;
    LoginPage lp;
    CreateNewCustomerAccountPage cca;
@@ -56,6 +60,9 @@ public class taskfeature
    ForgetPasswordPage fpp;
    JavascriptExecutor jre;
    WebDriverWait wait;
+   ShoppingCartPage scp;
+   SuccessPage sp;
+   static String orderno;
    public taskfeature(WebDriver driver)
    {
 	   this.driver=driver;
@@ -73,6 +80,9 @@ public class taskfeature
 	   fpp= new ForgetPasswordPage(driver);
 	   wait= new WebDriverWait(driver, 20);
 	   action=new Actions(driver);
+	   cp=new CheckoutPage(driver);
+	   scp=new ShoppingCartPage(driver);
+	   sp=new SuccessPage(driver);
    }
    
    public void ValidLogin(String username , String password) throws Exception
@@ -97,10 +107,12 @@ public class taskfeature
 //	   Thread.sleep(2000);
 	   lp.getUntxtb().sendKeys(username1);
 	   lp.getPwdtxtbx().sendKeys(password1,Keys.ENTER);
-//	   lp.getLoginBtn().click();
+// lp.getLoginBtn().click();
 //	   Thread.sleep(2000);
+	   Thread.sleep(5000);
 	   String errorMsgxpth="//div[text()='The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.']";
 	   String expected="The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.";
+	   Thread.sleep(5000);
 	   Assert.assertEquals(driver.findElement(By.xpath(errorMsgxpth)).getText(), expected);
    }
    public void CreateCust(String firstname ,String lastname,String emailaddess,String passwrd,String cpasswrd,String dateNbirth,String telephone) throws InterruptedException
@@ -157,37 +169,45 @@ public class taskfeature
    {
 
 	   ValidLogin(username, password);
-	   
-//	   bp.ClearCart();
-	   tm.searchFuc(product);
-
-	   	  ValidLogin(username, password);
-	   	JavascriptExecutor jre = (JavascriptExecutor)driver; 
-//	    jre.executeScript("window.scrollBy(0,-100)");
-	    
-	   	Thread.sleep(3000);
-	   	  tm.clearCart();
-	   	  tm.searchFuc(product);
-
-//	   srp.getFirstProductOnSearch().click();
-//	   String title = bp.getProductTitle().getText();
-//	    String expected = tm.trncString(bp.getProductTitle().getText());
-//	    String actual = tm.trncString(product);
-	  Assert.assertTrue(bp.getProductTitle().getText().contains(product));
-//	    Assert.assertEquals(actual, expected);
-	       bp.getAddToCartbtn().click();
-		   WebDriverWait wait = new WebDriverWait(driver, 10);
-		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
-		   
-//		   Thread.sleep(2000);
-		   bp.getMycartIcon().click();
-		   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-		   bp.getViewCartBtn().click();
-//		   Thread.sleep(2000);
-		   
-		   jre.executeScript("window.scrollBy(0,100)");
-		   wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
-		   bp.getProceedTochckBtn().click();
+       JavascriptExecutor jre = (JavascriptExecutor)driver;
+//  jre.executeScript("window.scrollBy(0,-100)");
+ 
+         Thread.sleep(3000);
+         tm.clearCart();
+         tm.searchFuc(product);
+//         srp.getFirstProductOnSearch().click();
+//         String title = bp.getProductTitle().getText();
+//      String expected = tm.trncString(bp.getProductTitle().getText());
+//      String actual = tm.trncString(product);
+     Assert.assertTrue(bp.getProductTitle().getText().contains(product));
+//          Assert.assertEquals(actual, expected);
+     bp.getAddToCartbtn().click();
+     WebDriverWait wait = new WebDriverWait(driver, 10);
+     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+    
+//     Thread.sleep(2000);
+     bp.getMycartIcon().click();
+     wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+     bp.getViewCartBtn().click();
+//     Thread.sleep(2000);
+    
+     //jre.executeScript("window.scrollBy(0,100)");
+     //wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
+     Thread.sleep(5000);
+     bp.getProceedTochckBtn().click();
+     Thread.sleep(3000);
+     jre.executeScript("window.scrollBy(0,200)");
+     Thread.sleep(3000);
+     cp.getNextBtn().click();
+     Thread.sleep(3000);
+     cp.getAgreementCheckbx().click();
+     Thread.sleep(3000);
+     cp.getProceedBtn().click();
+     
+     
+    orderno= sp.getOrderno().getText();
+	 System.out.println(orderno);
+     
 	   
 }
 
@@ -206,120 +226,78 @@ public class taskfeature
    public void ValidMaxCartCount(String username ,String password ) throws Exception 
    {
 	   ValidLogin(username, password);
-	   
-		JavascriptExecutor jre = (JavascriptExecutor)driver;
-	   	jre.executeScript("window.scrollBy(0,-100)");
-	   	tm.clearCart();
-	   Actions act = new Actions(driver);
-	   act.moveToElement(bp.getProductFormat()).perform();
-	   bp.getEbookCategory().click();
-	   Thread.sleep(2000);
-
-//	   bp.ClearCart();
-/*	   	String val = bp.getCartvalue().getText();
-//	    int value = Integer.parseInt(val);
-	   	if (val.equalsIgnoreCase("")) 
-	   {   
-	   		System.out.println("Cart is empty");
-	   }
-	   	else
-	   	{
-	   		System.out.println("i am in else ");
-			   bp.getMycartIcon().click();
-			   bp.getViewCartBtn().click();
-			   Thread.sleep(3000);
-			   tm.clearCart();
-		}
-*/   	
-//	   Thread.sleep(5000);
-//	   tm.searchFuc(ebook);
-	   List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
-		  
-	   for (int i = 0; i < 5; i++) 
-	   {
-		   WebElement book = numberofbooks.get(i);
-		   book.click();
-	   }
-
-	   Thread.sleep(10000);
-	    jre = (JavascriptExecutor)driver;
-
-	   
-	   
-/*	   JavascriptExecutor jre = (JavascriptExecutor)driver;
-	   jre.executeScript("window.scrollBy(0,-300)");
-*/	   WebDriverWait wait = new WebDriverWait(driver, 30);
-//	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
-	   
-
-	   jre.executeScript("window.scrollBy(0,-300)");
-	   
-	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
-	   
-	   bp.getLogo().click();
-	   hp.getEbooksbtn().click();
-	   
-	   List<WebElement> Ebooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
-		for (int i = 0; i < 5; i++) 
-	   {
-		   WebElement Ebook1 = Ebooks.get(i);
-		   Ebook1.click();
-		   
-		}
-
-	   jre.executeScript("window.scrollBy(0,-300)");
-	   Thread.sleep(10000);
-	   wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
-	   
-	   bp.getMycartIcon().click();
-	   bp.getViewCartBtn().click();
-	   Thread.sleep(2000);
-
-		   JavascriptExecutor jre1 = (JavascriptExecutor)driver;
-		   jre1.executeScript("window.scrollBy(0,-400)");
-		   
-		   
-		   Assert.assertEquals(bp.getCartvalue().getText(), "10");
-//	       wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
-		   bp.getMycartIcon().click();
-		   
-		   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-		   bp.getViewCartBtn().click();
-		   
-
-	  
-//	   bp.getProceedTochckBtn().click();
-//	   String title = "Checkout";
-//	   Assert.assertEquals(driver.getTitle(),title);
-	   
-   }
-   public void EbookMaxCount() throws InterruptedException
-   {
-	   JavascriptExecutor jre = (JavascriptExecutor)driver; 
-	    jre.executeScript("window.scrollBy(0,-100)");
-	    
-	 //   String val = bp.getNullValue().getText();
-	 //   System.out.println(val);
-	    tm.clearCart();
-	   Actions act = new Actions(driver);
-	   act.moveToElement(bp.getProductFormat()).perform();
-	   bp.getEbookCategory().click();
-	   Thread.sleep(2000);
-	   
-	   List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
-		
-	   for (int i = 0; i < 7; i++) 
-	   {
-		   WebElement book = numberofbooks.get(i);
-		   book.click();
-		   Thread.sleep(2000);
-		  
-	   }
-	   JavascriptExecutor jre1 = (JavascriptExecutor)driver;
-	   jre1.executeScript("window.scrollBy(0,-400)");
-	   
-	   Assert.assertEquals(bp.getCartvalue().getText(), "5");
-	   
+	      
+       JavascriptExecutor jre = (JavascriptExecutor)driver;
+          jre.executeScript("window.scrollBy(0,-100)");
+          tm.clearCart();
+       Actions act = new Actions(driver);
+       act.moveToElement(bp.getProductFormat()).perform();
+       bp.getEbookCategory().click();
+       Thread.sleep(2000);
+//      bp.ClearCart();
+/*           String val = bp.getCartvalue().getText();
+//       int value = Integer.parseInt(val);
+          if (val.equalsIgnoreCase(""))
+      {  
+              System.out.println("Cart is empty");
+      }
+          else
+          {
+              System.out.println("i am in else ");
+              bp.getMycartIcon().click();
+              bp.getViewCartBtn().click();
+              Thread.sleep(3000);
+              tm.clearCart();
+       }
+*/      
+     
+//      tm.searchFuc(ebook);
+      List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
+  
+      for (int i = 0; i < 5; i++)
+      {
+          WebElement book = numberofbooks.get(i);
+          book.click();
+          Thread.sleep(2000);
+        
+      }
+     
+     
+/*       JavascriptExecutor jre = (JavascriptExecutor)driver;
+      jre.executeScript("window.scrollBy(0,-300)");
+*/       WebDriverWait wait = new WebDriverWait(driver, 30);
+//      wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue5()));
+     
+    
+      jre.executeScript("window.scrollBy(0,-300)");
+     
+     
+      act.moveToElement(bp.getProductFormat()).perform();
+      bp.getBooksCategory().click();
+     
+      List<WebElement> Ebooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
+       for (int i = 3; i <10; i++)
+       {
+          WebElement Ebook1 = Ebooks.get(i);
+          Ebook1.click();
+          Thread.sleep(2000);
+         
+       }
+          JavascriptExecutor jre1 = (JavascriptExecutor)driver;
+          jre1.executeScript("window.scrollBy(0,-400)");
+         
+         
+          Assert.assertEquals(bp.getCartvalue().getText(), "10");
+//          wait.until(ExpectedConditions.visibilityOf(bp.getCartvalue10()));
+          bp.getMycartIcon().click();
+         
+          wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+          bp.getViewCartBtn().click();
+         
+    
+//      bp.getProceedTochckBtn().click();
+//      String title = "Checkout";
+//      Assert.assertEquals(driver.getTitle(),title);
    }
    
    public void GuestUserProductPurchase(String username,String password,String product,
@@ -327,68 +305,69 @@ public class taskfeature
 		   	String state,String zip,String country,String telephone)throws Exception
    {
 	   tm.searchFuc(product);
-  //   Thread.sleep(2000);
-  /*   bp.getSearchBar().sendKeys(product,Keys.ENTER);
-	   Thread.sleep(2000);
-	   List<WebElement> links = driver.findElements(By.xpath("//a"));
-	   
-	   Iterator<WebElement> itr = links.iterator();
-	   while(itr.hasNext())
-	   {
-		   WebElement txt = itr.next();
-		   String value ="Robbins & Cotran Pathologic ...";
-		   System.out.println("string value:- "+txt.getText());
-		   if (txt.getText().contains(value)) 
-		   {
-			   txt.click();
-			   break;
-		   }
-		}
-	*/	
-//	   srp.getFirstProductOnSearch().click();
-//	   Assert.assertEquals(bp.getProductIsbn().getText(), product);
-	   bp.getAddToCartbtn().click();
-	   WebDriverWait wait = new WebDriverWait(driver, 10);
-	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
-	   
-//	   Thread.sleep(2000);
-	   bp.getMycartIcon().click();
-	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   bp.getViewCartBtn().click();
-//	   Thread.sleep(2000);
-	   JavascriptExecutor jre = (JavascriptExecutor)driver;
-	   jre.executeScript("window.scrollBy(0,100)");
-	   wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
-	   bp.getProceedTochckBtn().click();
-	   
-	   wait.until(ExpectedConditions.visibilityOf(gucp.getGemail()));
-//	   Thread.sleep(10000);
-	   gucp.getGemail().sendKeys(Guestemail);
-//	   Thread.sleep(1000);
-	   gucp.getGFname().sendKeys(firstname);
-	   gucp.getGLname().sendKeys(lastname);
-	   gucp.getGStreet().sendKeys(street);
-	   
-	   gucp.getGCity().sendKeys(city);
-	   
-	   Select sel1 = new Select(gucp.getGState());
-	   sel1.selectByIndex(2);
-	   
-	   gucp.getGZip().sendKeys(zip);
-	   gucp.getGCompany().sendKeys(company);
-	   gucp.getGPhone().sendKeys(telephone);
-	  
-	   
-//	   Select sel = new Select(gucp.getGCountry());
-//	   sel.selectByVisibleText(country);
-			   
-//	   Thread.sleep(2000);
-	   
-	   gucp.getGNextBtn().click();
-	   
-	   String expected="Checkout | US Elsevier Health";
-	   Assert.assertEquals(driver.getTitle(), expected);
-	   Thread.sleep(10000);
+	     Thread.sleep(3000);
+	  /*   bp.getSearchBar().sendKeys(product,Keys.ENTER);
+	       Thread.sleep(2000);
+	       List<WebElement> links = driver.findElements(By.xpath("//a"));
+	      
+	       Iterator<WebElement> itr = links.iterator();
+	       while(itr.hasNext())
+	       {
+	           WebElement txt = itr.next();
+	           String value ="Robbins & Cotran Pathologic ...";
+	           System.out.println("string value:- "+txt.getText());
+	           if (txt.getText().contains(value))
+	           {
+	               txt.click();
+	               break;
+	           }
+	        }
+	    */   
+//	       srp.getFirstProductOnSearch().click();
+//	       Assert.assertEquals(bp.getProductIsbn().getText(), product);
+	     bp.getAddToCartbtn().click();
+	       WebDriverWait wait = new WebDriverWait(driver, 10);
+	       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+	      
+//	       Thread.sleep(2000);
+	       System.out.println("7");
+	       bp.getMycartIcon().click();
+	       System.out.println("8");
+	       wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+	       System.out.println("9");
+	       bp.getViewCartBtn().click();
+//	      
+	       System.out.println("10");
+	       Thread.sleep(3000);
+	       bp.getProceedTochckBtn().click();
+	       System.out.println("11");
+	       wait.until(ExpectedConditions.visibilityOf(gucp.getGemail()));
+//	       Thread.sleep(10000);
+	       gucp.getGemail().sendKeys(Guestemail);
+//	       Thread.sleep(1000);
+	       gucp.getGFname().sendKeys(firstname);
+	       gucp.getGLname().sendKeys(lastname);
+	       gucp.getGStreet().sendKeys(street);
+	      
+	       gucp.getGCity().sendKeys(city);
+	      
+	       Select sel1 = new Select(gucp.getGState());
+	       sel1.selectByIndex(2);
+	      
+	       gucp.getGZip().sendKeys(zip);
+	       gucp.getGCompany().sendKeys(company);
+	       gucp.getGPhone().sendKeys(telephone);
+	     
+	      
+//	       Select sel = new Select(gucp.getGCountry());
+//	       sel.selectByVisibleText(country);
+	              
+//	       Thread.sleep(2000);
+	      
+	       gucp.getGNextBtn().click();
+	      
+	       String expected="Checkout | US Elsevier Health";
+	       Assert.assertEquals(driver.getTitle(), expected);
    }
    
 public void EditBillingAddress(String username, String password,String street,String city,String state,String zip,String country) throws Exception
@@ -499,11 +478,11 @@ Thread.sleep(5000);
 	   bp.getPriceFilterValue().click();
 	   
 	   Thread.sleep(3000);
-	   jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getPbYearFilter());
-	   bp.getPbYearFilter().click();
-	   Thread.sleep(3000);
-	   jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getYrFilterValue());
-	   bp.getYrFilterValue().click();
+	   //jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getPbYearFilter());
+	   //bp.getPbYearFilter().click();
+	   Thread.sleep(5000);
+	   //jre.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", bp.getYrFilterValue());
+	   //bp.getYrFilterValue().click();
 	   Thread.sleep(3000);
 	   //Thread.sleep(5000);
 	   //mp.getProductItem().click();
@@ -529,186 +508,199 @@ Thread.sleep(5000);
    public void GuestDiscountCoupon(String product,int Discount,String coupon) throws Exception
    {
 	   String oldprice;
-//	   System.out.println(product);
-	   
-//	   Thread.sleep(5000);
-//	   bp.ClearCart();
-//	   String val1=driver.findElement(By.xpath("//span[@class='counter qty empty']/span[@class='counter-number']")).getText();
-	    
-//	   System.out.println("cart value is :-"+val1);
-/*	   String val = bp.getCartvalue().getText();
-	   System.out.println("cart value "+val);
-	  
-//	   int value = Integer.parseInt(val);
-	   if (val.equalsIgnoreCase("")) 
-	   {s
-		   
-		   System.out.println("Cart is empty ");
-	   }
-	   else 
-	   {
-//		   System.out.println(" i am in else condition");
-		   bp.getMycartIcon().click();
-		   bp.getViewCartBtn().click();
-		   Thread.sleep(3000);
-		   tm.clearCart();
-		}
+//     System.out.println(product);
+     
+//     Thread.sleep(5000);
+//     bp.ClearCart();
+//     String val1=driver.findElement(By.xpath("//span[@class='counter qty empty']/span[@class='counter-number']")).getText();
+      
+//     System.out.println("cart value is :-"+val1);
+/*       String val = bp.getCartvalue().getText();
+     System.out.println("cart value "+val);
+    
+//     int value = Integer.parseInt(val);
+     if (val.equalsIgnoreCase("")) 
+     {s
+         
+         System.out.println("Cart is empty ");
+     }
+     else 
+     {
+//         System.out.println(" i am in else condition");
+         bp.getMycartIcon().click();
+         bp.getViewCartBtn().click();
+         Thread.sleep(3000);
+         tm.clearCart();
+      }
 */
-	   Thread.sleep(1000);
-	   tm.searchFuc(product);
-	   bp.getAddToCartbtn().click();
-	   WebDriverWait wait = new WebDriverWait(driver, 10);
-	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
-	   
-//	   Thread.sleep(2000);
-	   bp.getMycartIcon().click();
-	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   bp.getViewCartBtn().click();
-//	   
-//	   boolean bol = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).isDisplayed();
-//	  System.out.println(bol);
-	 
-	  if (driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).isDisplayed()) 
-	 {
-		 
-        oldprice =driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).getText();
-		//  System.out.println("if condtion is :"+oldprice);
+     Thread.sleep(1000);
+     tm.searchFuc(product);
+     bp.getAddToCartbtn().click();
+     WebDriverWait wait = new WebDriverWait(driver, 10);
+     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+     
+//     Thread.sleep(2000);
+     bp.getMycartIcon().click();
+     wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+     bp.getViewCartBtn().click();
+//     
+//     boolean bol = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).isDisplayed();
+//    System.out.println(bol);
+   
+    if (driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).isDisplayed()) 
+   {
+       
+      oldprice =driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).getText();
+      //  System.out.println("if condtion is :"+oldprice);
 
-	 } 
-	 else 
-	 {
-		 oldprice = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).getText();
-	      System.out.println("else condtion is :"+oldprice);
-	 }
-	  
-	  String basefare = oldprice.substring(1);
-      double basefare1 = Double.parseDouble(basefare);
-      
-      String value = driver.findElement(By.xpath("//div[@class='field qty']//input")).getAttribute("value");
-//	  System.out.prin	tln(value);
-	  double qty = Double.parseDouble(value);
-	  double finlprice = qty*basefare1;
-	  
-//	  double val2 = finlprice/4;
-	  double val2 = tm.Discount(finlprice, Discount);
-//      System.out.println("discounted price "+val2);
-      
-//      double afterdiscount = basefare1-val2;
-//    System.out.println(afterdiscount);
-      
-      DecimalFormat df2 = new DecimalFormat("$#.##");
-//    System.out.println("Two decimal :- "+df2.format(afterdiscount)); 
-      String discountedvalue = df2.format(val2);
-      System.out.println(discountedvalue);
-      
-      driver.findElement(By.id("coupon_code")).sendKeys(coupon);
-      driver.findElement(By.xpath("//button//span[text()='Apply']")).click();
-      
-      
-//    List<WebElement> numberOfSubtotal = driver.findElements(By.xpath("//td[@class='col subtotal']"));
-//    Iterator<WebElement> itr = numberOfSubtotal.iterator();
-      
-//    String subtotalval = itr.next().getText();
-//    System.out.println("subtotal value "+subtotalval);
-//    Assert.assertEquals(discountedvalue, subtotalval);
-     Thread.sleep(20000);
+
+
+   } 
+   else 
+   {
+       oldprice = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).getText();
+        System.out.println("else condtion is :"+oldprice);
+   }
+    
+    String basefare = oldprice.substring(1);
+    double basefare1 = Double.parseDouble(basefare);
+    
+    String value = driver.findElement(By.xpath("//div[@class='field qty']//input")).getAttribute("value");
+//    System.out.prin    tln(value);
+    double qty = Double.parseDouble(value);
+    double finlprice = qty*basefare1;
+    
+//    double val2 = finlprice/4;
+    double val2 = tm.Discount(finlprice, Discount);
+//    System.out.println("discounted price "+val2);
+    
+//    double afterdiscount = basefare1-val2;
+//  System.out.println(afterdiscount);
+    
+    DecimalFormat df2 = new DecimalFormat("$#.##");
+//  System.out.println("Two decimal :- "+df2.format(afterdiscount)); 
+    String discountedvalue = df2.format(val2);
+    System.out.println(discountedvalue);
+    
+    driver.findElement(By.id("coupon_code")).sendKeys(coupon);
+    driver.findElement(By.xpath("//button//span[text()='Apply']")).click();
+    
+    
+//  List<WebElement> numberOfSubtotal = driver.findElements(By.xpath("//td[@class='col subtotal']"));
+//  Iterator<WebElement> itr = numberOfSubtotal.iterator();
+    
+//  String subtotalval = itr.next().getText();
+//  System.out.println("subtotal value "+subtotalval);
+//  Assert.assertEquals(discountedvalue, subtotalval);
    
    }  
    
    public void MultiCart(String product,String flashcard,String Ebook) throws InterruptedException
    {
 	   tm.searchFuc(product);
-	   bp.getAddToCartbtn().click();
-	   tm.searchFuc(flashcard);
-	   bp.getAddToCartbtn().click();
-	   tm.searchFuc(Ebook);
-	   bp.getAddToCartbtn().click();
-	   
-	   WebDriverWait wait = new WebDriverWait(driver, 10);
-	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
-	   
-//	   Thread.sleep(2000);
-	   bp.getMycartIcon().click();
-	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   bp.getViewCartBtn().click();
-	 
-//	   List<WebElement> productlist = driver.findElements(By.xpath("//tbody[@class='cart item']//a"));
-	   
-	   JavascriptExecutor jre = (JavascriptExecutor)driver;
-	   jre.executeScript("window.scrollBy(0,100)");
-	   wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
-	   bp.getProceedTochckBtn().click(); 
-	   Assert.assertEquals("Customer Login | US Elsevier Health", driver.getTitle());
-	   
+       bp.getAddToCartbtn().click();
+       tm.searchFuc(flashcard);
+       bp.getAddToCartbtn().click();
+       tm.searchFuc(Ebook);
+       bp.getAddToCartbtn().click();
+      
+       WebDriverWait wait = new WebDriverWait(driver, 10);
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+      
+//       Thread.sleep(2000);
+       bp.getMycartIcon().click();
+       wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+       bp.getViewCartBtn().click();
+    
+//       List<WebElement> productlist = driver.findElements(By.xpath("//tbody[@class='cart item']//a"));
+      
+       JavascriptExecutor jre = (JavascriptExecutor)driver;
+       jre.executeScript("window.scrollBy(0,100)");
+       wait.until(ExpectedConditions.visibilityOf(bp.getProceedTochckBtn()));
+      
+       List<WebElement> count = scp.getSubtotalitem();
+       for (int i = 0; i <= count.size(); i++)
+       {
+            String subtotal = count.get(i).getText();
+            subtotal.substring(0, 1);
+            System.out.println(subtotal);
+       }
+      
+//       bp.getProceedTochckBtn().click();
+//       Assert.assertEquals("Customer Login | US Elsevier Health", driver.getTitle());
 	   
    }
+   
+   
    
    public void validDiscountCoupon(String username,String password,String product,int Discount,String coupon) throws Exception
    {
 	   ValidLogin(username, password);
-	   String oldprice;
-//	   System.out.println(product);
-	   
-//	   Thread.sleep(5000);
-//	   bp.ClearCart();
-//	   String val1=driver.findElement(By.xpath("//span[@class='counter qty empty']/span[@class='counter-number']")).getText();
-	    
-//	   System.out.println("cart value is :-"+val1);
-/*	   String val = bp.getCartvalue().getText();
-	   System.out.println("cart value "+val);
-	  
-//	   int value = Integer.parseInt(val);
-	   if (val.equalsIgnoreCase("")) 
-	   {s
-		   
-		   System.out.println("Cart is empty ");
-	   }
-	   else 
-	   {
-//		   System.out.println(" i am in else condition");
-		   bp.getMycartIcon().click();
-		   bp.getViewCartBtn().click();
-		   Thread.sleep(3000);
-		   tm.clearCart();
-		}
+       String oldprice;
+//       System.out.println(product);
+       
+//       Thread.sleep(5000);
+//       bp.ClearCart();
+//       String val1=driver.findElement(By.xpath("//span[@class='counter qty empty']/span[@class='counter-number']")).getText();
+        
+//       System.out.println("cart value is :-"+val1);
+/*       String val = bp.getCartvalue().getText();
+       System.out.println("cart value "+val);
+      
+//       int value = Integer.parseInt(val);
+       if (val.equalsIgnoreCase("")) 
+       {s
+           
+           System.out.println("Cart is empty ");
+       }
+       else 
+       {
+//           System.out.println(" i am in else condition");
+           bp.getMycartIcon().click();
+           bp.getViewCartBtn().click();
+           Thread.sleep(3000);
+           tm.clearCart();
+        }
 */
-	   Thread.sleep(1000);
-	   tm.searchFuc(product);
-	   bp.getAddToCartbtn().click();
-	   WebDriverWait wait = new WebDriverWait(driver, 10);
-	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
-	   
-//	   Thread.sleep(2000);
-	   bp.getMycartIcon().click();
-	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   bp.getViewCartBtn().click();
-//	   
-//	   boolean bol = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).isDisplayed();
-//	  System.out.println(bol);
-	 
-	  if (driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).isDisplayed()) 
-	 {
-		 
+       Thread.sleep(1000);
+       tm.searchFuc(product);
+       bp.getAddToCartbtn().click();
+       WebDriverWait wait = new WebDriverWait(driver, 10);
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+       
+//       Thread.sleep(2000);
+       bp.getMycartIcon().click();
+       wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+       bp.getViewCartBtn().click();
+//       
+//       boolean bol = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).isDisplayed();
+//      System.out.println(bol);
+     
+      if (driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).isDisplayed()) 
+     {
+         
         oldprice =driver.findElement(By.xpath("//td[@class='col price']//span[@class='price']")).getText();
-		//  System.out.println("if condtion is :"+oldprice);
+        //  System.out.println("if condtion is :"+oldprice);
 
-	 } 
-	 else 
-	 {
-		 oldprice = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).getText();
-	      System.out.println("else condtion is :"+oldprice);
-	 }
-	  
-	  String basefare = oldprice.substring(1);
+ 
+
+     } 
+     else 
+     {
+         oldprice = driver.findElement(By.xpath("//span[@class='old-price']/span[@class='price']")).getText();
+          System.out.println("else condtion is :"+oldprice);
+     }
+      
+      String basefare = oldprice.substring(1);
       double basefare1 = Double.parseDouble(basefare);
       
       String value = driver.findElement(By.xpath("//div[@class='field qty']//input")).getAttribute("value");
-//	  System.out.prin	tln(value);
-	  double qty = Double.parseDouble(value);
-	  double finlprice = qty*basefare1;
-	  
-//	  double val2 = finlprice/4;
-	  double val2 = tm.Discount(finlprice, Discount);
+//      System.out.prin    tln(value);
+      double qty = Double.parseDouble(value);
+      double finlprice = qty*basefare1;
+      
+//      double val2 = finlprice/4;
+      double val2 = tm.Discount(finlprice, Discount);
 //      System.out.println("discounted price "+val2);
       
 //      double afterdiscount = basefare1-val2;
@@ -728,27 +720,23 @@ Thread.sleep(5000);
       
 //    String subtotalval = itr.next().getText();
 //    System.out.println("subtotal value "+subtotalval);
-//    Assert.assertEquals(discountedvalue, subtotalval);
-     Thread.sleep(20000);
-    
-   
+//    Assert.assertEquals(discountedvalue, subtotalval);   
    }
   public void GuestUserNotBuyEbook(String Ebook) throws Exception
    {
-	   tm.searchFuc(Ebook);
-//	   srp.getFirstProductOnSearch().click();
-	   bp.getAddToCartbtn().click();
-	   WebDriverWait wait = new WebDriverWait(driver, 10);
-	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
-	   
-//	   Thread.sleep(2000);
-	   bp.getMycartIcon().click();
-	   wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
-	   bp.getViewCartBtn().click();
-//	   
-	   bp.getProceedTochckBtn().click();
-	   Thread.sleep(3000);
-//	   Assert.assertEquals("Customer Login", driver.getTitle());
+	  tm.searchFuc(Ebook);
+//    srp.getFirstProductOnSearch().click();
+    bp.getAddToCartbtn().click();
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+   
+//    Thread.sleep(2000);
+    bp.getMycartIcon().click();
+    wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+    bp.getViewCartBtn().click();
+//   
+    bp.getProceedTochckBtn().click();
+    Thread.sleep(3000);
    }
   public void Forgetpassword() throws InterruptedException
   {
@@ -888,7 +876,86 @@ Thread.sleep(5000);
 	  Assert.assertEquals(driver.findElement(By.xpath("//a[@class='product-item-link']")).getText(), driver.findElement(By.xpath("(//a[@class='product-item-link'])[1]")).getText());
  }
   
+ 
+ public void EbookMaxCount() throws InterruptedException
+ {
+     JavascriptExecutor jre = (JavascriptExecutor)driver;
+      jre.executeScript("window.scrollBy(0,-100)");
+     
+   //   String val = bp.getNullValue().getText();
+   //   System.out.println(val);
+      tm.clearCart();
+     Actions act = new Actions(driver);
+     act.moveToElement(bp.getProductFormat()).perform();
+     bp.getEbookCategory().click();
+     Thread.sleep(2000);
+    
+     List<WebElement> numberofbooks = driver.findElements(By.xpath("//span[text()='Add to Cart']"));
+     
+     for (int i = 0; i < 7; i++)
+     {
+         WebElement book = numberofbooks.get(i);
+         book.click();
+         Thread.sleep(2000);
+       
+     }
+     JavascriptExecutor jre1 = (JavascriptExecutor)driver;
+     jre1.executeScript("window.scrollBy(0,-400)");
+    
+     Assert.assertEquals(bp.getCartvalue().getText(), "5");
+     
+    
+ }
 
+  public void orderNoConfirm(String username, String password, String product) throws Exception {
+	  
+	  ValidLogin(username, password);
+      JavascriptExecutor jre = (JavascriptExecutor)driver;
+
+
+        Thread.sleep(3000);
+        tm.clearCart();
+        tm.searchFuc(product);
+
+    bp.getAddToCartbtn().click();
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));
+   
+
+    bp.getMycartIcon().click();
+    wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+    bp.getViewCartBtn().click();
+
+    Thread.sleep(5000);
+    bp.getProceedTochckBtn().click();
+    Thread.sleep(3000);
+    jre.executeScript("window.scrollBy(0,200)");
+    Thread.sleep(5000);
+    cp.getNextBtn().click();
+    Thread.sleep(3000);
+    cp.getAgreementCheckbx().click();
+    Thread.sleep(3000);
+    cp.getProceedBtn().click();
+    
+    
+    String orderno= sp.getOrderno().getText();
+	 System.out.println(orderno);
+	 
+	action.moveToElement(hp.getUserIcon()).moveToElement(hp.getMyAccountLink()).click().build().perform();
+
+	  
+	  Thread.sleep(5000);
+	  sp.getMyOrderlink().click();
+	  
+	 	  
+	  Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"my-orders-table\"]/tbody/tr[1]/td[1]")).getText(), orderno);
+	  
+	  
+	  
+	  
+	  
+  }
+ 
 }
    
 

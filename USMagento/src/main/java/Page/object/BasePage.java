@@ -74,7 +74,7 @@ public class BasePage
 	@FindBy(xpath="//div[text()='Publication Year']")
 	private @Getter WebElement pbYearFilter;
 	
-	@FindBy(xpath="(//div[@class='filter-options-content'])[2]//li")
+	@FindBy(xpath="//*[@id=\"narrow-by-list\"]/div[2]/div[2]/ol/li[1]")
 	private @Getter WebElement yrFilterValue;
 	
 	public BasePage(WebDriver driver)

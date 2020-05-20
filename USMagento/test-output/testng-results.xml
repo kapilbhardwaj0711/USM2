@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[suite is executed Wed May 13 20:37:19 IST 2020]]>
+      <![CDATA[suite is executed Tue May 19 19:23:04 IST 2020]]>
     </line>
     <line>
       <![CDATA[chrome Launched]]>
@@ -11,35 +11,60 @@
       <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/ url is navigated]]>
     </line>
     <line>
-      <![CDATA[wishList script execustion startsWed May 13 20:37:30 IST 2020]]>
+      <![CDATA[myOrderValdation script execustion startsTue May 19 19:23:28 IST 2020]]>
     </line>
     <line>
-      <![CDATA[wishList script is failed]]>
+      <![CDATA[myOrderValdation script is passed]]>
     </line>
     <line>
-      <![CDATA[wishList script is failed]]>
-    </line>
-    <line>
-      <![CDATA[suite execution end :Wed May 13 20:37:33 IST 2020]]>
-    </line>
-    <line>
-      <![CDATA[total suite execution time 0mins]]>
-    </line>
-    <line>
-      <![CDATA[total scrpt executed 1]]>
-    </line>
-    <line>
-      <![CDATA[total script passed 0]]>
-    </line>
-    <line>
-      <![CDATA[total scrpt failed 2]]>
-    </line>
-    <line>
-      <![CDATA[total scrpt skipped 0]]>
+      <![CDATA[browser closed]]>
     </line>
   </reporter-output>
-  <suite name="Suite" duration-ms="0" started-at="2020-05-13T15:07:33Z" finished-at="2020-05-13T15:07:33Z">
+  <suite name="Suite" duration-ms="164837" started-at="2020-05-19T13:53:04Z" finished-at="2020-05-19T13:55:49Z">
     <groups>
     </groups>
+    <test name="Test" duration-ms="164837" started-at="2020-05-19T13:53:04Z" finished-at="2020-05-19T13:55:49Z">
+      <class name="Script.SuccessPageTest">
+        <test-method status="PASS" signature="precondition(java.lang.String, java.lang.String)[pri:0, instance:Script.SuccessPageTest@6a41eaa2]" name="precondition" is-config="true" duration-ms="24027" started-at="2020-05-19T13:53:04Z" finished-at="2020-05-19T13:53:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[chrome Launched]]>
+            </line>
+            <line>
+              <![CDATA[https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/ url is navigated]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- precondition -->
+        <test-method status="PASS" signature="myOrderValdation()[pri:1, instance:Script.SuccessPageTest@6a41eaa2]" name="myOrderValdation" duration-ms="135429" started-at="2020-05-19T13:53:28Z" finished-at="2020-05-19T13:55:44Z">
+          <reporter-output>
+            <line>
+              <![CDATA[myOrderValdation script execustion startsTue May 19 19:23:28 IST 2020]]>
+            </line>
+            <line>
+              <![CDATA[myOrderValdation script is passed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- myOrderValdation -->
+        <test-method status="PASS" signature="postcondition()[pri:0, instance:Script.SuccessPageTest@6a41eaa2]" name="postcondition" is-config="true" duration-ms="5257" started-at="2020-05-19T13:55:44Z" finished-at="2020-05-19T13:55:49Z">
+          <reporter-output>
+            <line>
+              <![CDATA[browser closed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- postcondition -->
+      </class> <!-- Script.SuccessPageTest -->
+    </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>
