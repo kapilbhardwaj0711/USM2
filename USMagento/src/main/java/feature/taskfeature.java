@@ -813,29 +813,91 @@ Thread.sleep(5000);
   }
 
   
-  public void searchProductByFormat(String username,String password, String isbnsearch, String Author, String title, String keyword) throws Exception {
+  public void searchProductByTitle(String username,String password, String isbnsearch, String Author, String title, String keyword) throws Exception 
+  {
 	  
-	   ValidLogin(username, password);
+	//   ValidLogin(username, password);
 	  
 	  Thread.sleep(1000);
 	  
-	  tm.customSearchProduct(isbnsearch);
+//	  tm.customSearchProduct(isbnsearch);
+	     
+	     tm.searchFuc(title);
+	     Assert.assertTrue(driver.findElement(By.xpath("//div[@class='page-title-wrapper']/h1[@class='page-title']")).getText().contains(title));
+	     bp.getAddToCartbtn().click();
+//	  tm.customSearchProduct(Author);
+	  
+//	  tm.customSearchProduct(keyword);
+	  
 
 	 
-	  tm.customSearchProduct(title);
-	 
-	  tm.customSearchProduct(Author);
-	  
-	  tm.customSearchProduct(keyword);
-	  
-
-	  
-	  Thread.sleep(5000);
-	action.moveToElement(bp.getMycartIcon()).moveToElement(bp.getViewCartBtn()).click().build().perform();
+//	  Thread.sleep(5000);
+	  	 WebDriverWait wait = new WebDriverWait(driver, 10);
+	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));	    
+//	     Thread.sleep(2000);
+	     bp.getMycartIcon().click();
+	     wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+	     bp.getViewCartBtn().click();
+//	action.moveToElement(bp.getMycartIcon()).moveToElement(bp.getViewCartBtn()).click().perform();
 	  
 		  
 	  
   }
+  public void searchProductByISBN(String username,String password, String isbnsearch, String Author, String title, String keyword) throws Exception {
+	  
+		//   ValidLogin(username, password);
+		  
+		  Thread.sleep(1000);
+		  
+//		  tm.customSearchProduct(isbnsearch);
+		     tm.isbnsearch(isbnsearch);
+		     bp.getAddToCartbtn().click();
+		     
+		     
+//		  tm.customSearchProduct(Author);
+		  
+//		  tm.customSearchProduct(keyword);
+		  
+
+		 
+//		  Thread.sleep(5000);
+		  	 WebDriverWait wait = new WebDriverWait(driver, 10);
+		     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));	    
+//		     Thread.sleep(2000);
+		     bp.getMycartIcon().click();
+		     wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+		     bp.getViewCartBtn().click();
+//		action.moveToElement(bp.getMycartIcon()).moveToElement(bp.getViewCartBtn()).click().perform();
+		  
+			  
+		  
+	  }
+  public void searchProductByAuthor(String username,String password, String isbnsearch, String Author, String title, String keyword) throws Exception {
+	  
+		//   ValidLogin(username, password);
+		  
+		  Thread.sleep(1000);
+		  
+//		  tm.customSearchProduct(isbnsearch);
+		     
+//		  tm.customSearchProduct(Author);
+		  
+//		  tm.customSearchProduct(keyword);
+		  
+
+		 
+//		  Thread.sleep(5000);
+		  	 WebDriverWait wait = new WebDriverWait(driver, 10);
+		     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='counter qty']/span[@class='counter-number']")));	    
+//		     Thread.sleep(2000);
+		     bp.getMycartIcon().click();
+		     wait.until(ExpectedConditions.visibilityOf(bp.getViewCartBtn()));
+		     bp.getViewCartBtn().click();
+//		action.moveToElement(bp.getMycartIcon()).moveToElement(bp.getViewCartBtn()).click().perform();
+		  
+			  
+		  
+	  }
   
   
   public void ESubscribeAlert(String username, String password) throws Exception {

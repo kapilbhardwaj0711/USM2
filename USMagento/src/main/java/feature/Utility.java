@@ -112,11 +112,12 @@ public class Utility
     	return newActual;
     }
     
-    public void customSearchProduct(String product) throws InterruptedException {
+    public void customSearchProduct(String product) throws InterruptedException 
+   {
     	bp.getSearchBar().sendKeys(product,Keys.ENTER);
     	
   	  	Thread.sleep(3000);
-  	  JavascriptExecutor jre = (JavascriptExecutor)driver;
+  	  	JavascriptExecutor jre = (JavascriptExecutor)driver;
   	   jre.executeScript("window.scrollBy(0,400)");
   	   
   	 List<WebElement> links = driver.findElements(By.xpath("//a"));
@@ -125,7 +126,7 @@ public class Utility
  	
  	
  	while (itr.hasNext()) 
- 	{
+ 		{
  		WebElement value = itr.next();
  		if (value.getText().equals(product)) 
 			{
@@ -143,6 +144,29 @@ public class Utility
   	   Thread.sleep(10000);
     }
     
-    
+    public void isbnsearch(String product) throws InterruptedException 
+    {
+    	bp.getSearchBar().sendKeys(product,Keys.ENTER);
+    	Thread.sleep(3000);
+  	  	
+    	JavascriptExecutor jre = (JavascriptExecutor)driver;
+  	  	jre.executeScript("window.scrollBy(0,400)");
+  	   
+  	  	List<WebElement> links = driver.findElements(By.xpath("//div[@class='search results']//img"));
+  		Iterator<WebElement> itr = links.iterator();
+  		itr.next().click();
+  		jre.executeScript("window.scrollBy(0,200)");
+  		
+ /* String FUllText = driver.findElement(By.xpath("//div[@class='product-info-isbn']//a")).getText();
+  	int IndexVAL = 1+FUllText.indexOf(':');
+  	String isbn = FUllText.substring(IndexVAL);
+  	System.out.println(isbn);
+  	Thread.sleep(5000);
+  */		
+  	
+  	  	 
+ 	
+    	
+    }
     
 }

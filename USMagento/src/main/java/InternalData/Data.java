@@ -26,9 +26,10 @@ public interface Data
 	final String company="jobkart";
 	final String Guestemail="test107@gmail.com";
 	final String isbn="9780323636360";
-	final String isbnsearch="9788131249987";
+	final String isbnsearch="9780323683364";
 	final String author="Maggie";
 	final String title="Pierson and Fairchild's Principles & Techniques of Patient Care";
+	final String title1="Diagnostic Imaging: Gynecology";
 	final String keyword="math";
 	
 	final int Discount =30;

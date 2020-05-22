@@ -9,13 +9,13 @@
     <parameter name="baseurl" value="https://magento-uat:jkvdlkn%NJ10@us-uat-magento.compunnel.com/"/>
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="Script.SuccessPageTest">
+      <class name="Script.Search_Product">
         <methods>
-          <include name="myOrderValdation"/>
+          <include name="CustomSearchTest"/>
           <include name="precondition"/>
           <include name="postcondition"/>
         </methods>
-      </class> <!-- Script.SuccessPageTest -->
+      </class> <!-- Script.Search_Product -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

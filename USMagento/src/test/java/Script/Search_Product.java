@@ -8,12 +8,30 @@ import feature.taskfeature;
 
 public class Search_Product extends baseLib implements Data
 {
-     @Test
-     public void CustomSearchTest() throws Exception
+     @Test(priority = 1)
+     public void SearchTestBytitle() throws Exception
      {
     	 taskfeature tf = new taskfeature(driver);
 
-    	 tf.searchProductByFormat(username, password, isbnsearch, author, title, keyword);
+    	 tf.searchProductByTitle(username, password, isbnsearch, author, title, keyword);
     	 
      }
-}
+     
+ /*    @Test(priority = 2)
+     public void SearchTestByISBN() throws Exception
+     {
+    	 taskfeature tf = new taskfeature(driver);
+
+    	 tf.searchProductByISBN(username, password, isbnsearch, author, title, keyword);
+    	 
+     }
+     
+     @Test(priority = 3)
+     public void SearchTestByAuthor() throws Exception
+     {
+    	 taskfeature tf = new taskfeature(driver);
+
+    	 tf.searchProductByAuthor(username, password, isbnsearch, author, title, keyword);
+    	 
+     }
+*/}
